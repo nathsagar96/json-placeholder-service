@@ -42,10 +42,12 @@ class PostControllerIntegrationTest {
     @Test
     void testGetAllPosts() throws Exception {
         Post post1 = new Post();
+        post1.setUserId(1L);
         post1.setTitle("First Post");
         post1.setBody("This is the first post");
 
         Post post2 = new Post();
+        post2.setUserId(1L);
         post2.setTitle("Second Post");
         post2.setBody("This is the second post");
 
@@ -61,6 +63,7 @@ class PostControllerIntegrationTest {
     @Test
     void testGetPostById() throws Exception {
         Post post = new Post();
+        post.setUserId(1L);
         post.setTitle("Single Post");
         post.setBody("This is a single post");
         Post savedPost = postRepository.save(post);
@@ -72,13 +75,9 @@ class PostControllerIntegrationTest {
 
     @Test
     void testCreatePost() throws Exception {
-        Post post = new Post();
-        post.setTitle("New Post");
-        post.setBody("This is a new post");
-
         mockMvc.perform(post("/posts")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"title\": \"New Post\", \"body\": \"This is a new post\"}"))
+                        .content("{\"userId\":1, \"title\":\"New Post\", \"body\":\"This is a new post\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title", is("New Post")));
     }
@@ -86,6 +85,7 @@ class PostControllerIntegrationTest {
     @Test
     void testUpdatePost() throws Exception {
         Post post = new Post();
+        post.setUserId(1L);
         post.setTitle("Old Post");
         post.setBody("This is the old post");
         Post savedPost = postRepository.save(post);
@@ -100,6 +100,7 @@ class PostControllerIntegrationTest {
     @Test
     void testDeletePost() throws Exception {
         Post post = new Post();
+        post.setUserId(1L);
         post.setTitle("Delete Post");
         post.setBody("This post will be deleted");
         Post savedPost = postRepository.save(post);

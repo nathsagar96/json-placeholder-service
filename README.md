@@ -1,6 +1,6 @@
 # JSON Placeholder Service
 
-The JSON Placeholder Service is a Spring Boot application designed to mimic the functionalities of the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) service. This service provides RESTful APIs for handling users, posts, comments, and albums, demonstrating a microservices architecture using Spring Cloud.
+The JSON Placeholder Service is a group of Spring Boot applications designed to mimic the functionalities of the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) service. This service provides RESTful APIs for handling users, posts, comments, and albums, demonstrating a microservices architecture using Spring Cloud.
 
 ## Table of Contents
 

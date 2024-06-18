@@ -27,7 +27,7 @@ This project follows a microservices architecture, where each functionality is s
 The JSON Placeholder Service is composed of the following microservices:
 
 1. **Post Service**
-   - Repository: [Post Service Repository](https://github.com/nathsagar96/json-placeholder-service/post-service)
+   - Repository: [Post Service Repository](post-service/README.md)
    - Manages posts.
 
 2. **Comment Service**

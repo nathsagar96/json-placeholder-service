@@ -27,11 +27,11 @@ This project follows a microservices architecture, where each functionality is s
 The JSON Placeholder Service is composed of the following microservices:
 
 1. **Post Service**
-   - Repository: [Post Service Repository](post-service/README.md)
+   - Repository: [Post Service Repository](post-service)
    - Manages posts.
 
 2. **Comment Service**
-   - Repository: [Comment Service Repository](https://github.com/nathsagar96/json-placeholder-service/comment-service)
+   - Repository: [Comment Service Repository](comment-service)
    - Manages comments.
 
 3. **Album Service**
@@ -86,6 +86,7 @@ The JSON Placeholder Service is composed of the following microservices:
 - `POST /comments`: Create a new comment
 - `PUT /comments/{id}`: Update a comment by ID
 - `DELETE /comments/{id}`: Delete a comment by ID
+- `GET /comments/post/{postId}`: Retrieve all comments by a specific post
 
 ### Album Endpoints
 

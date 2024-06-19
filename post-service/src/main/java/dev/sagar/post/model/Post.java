@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Post {
@@ -12,11 +15,15 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "User ID cannot be null")
     private Long userId;
+
+    @NotEmpty(message = "Title cannot be empty")
+    @Size(max = 255, message = "Title cannot exceed 255 characters")
     private String title;
+
     private String body;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }

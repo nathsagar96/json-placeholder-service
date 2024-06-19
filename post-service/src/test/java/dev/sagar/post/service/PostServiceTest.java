@@ -15,6 +15,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -78,16 +79,11 @@ class PostServiceTest {
         post.setId(1L);
         post.setTitle("Updated Post");
 
-        when(postRepository.findById(1L)).thenReturn(Optional.of(post));
         when(postRepository.save(post)).thenReturn(post);
 
-        Post postDetails = new Post();
-        postDetails.setTitle("Updated Post");
-
-        Post updatedPost = postService.updatePost(1L, postDetails);
+        Post updatedPost = postService.updatePost(post);
         assertNotNull(updatedPost);
         assertEquals("Updated Post", updatedPost.getTitle());
-        verify(postRepository, times(1)).findById(1L);
         verify(postRepository, times(1)).save(post);
     }
 
@@ -96,10 +92,10 @@ class PostServiceTest {
         Post post = new Post();
         post.setId(1L);
 
-        when(postRepository.findById(1L)).thenReturn(Optional.of(post));
+        doNothing().when(postRepository).delete(post);
 
-        postService.deletePost(1L);
-        verify(postRepository, times(1)).deleteById(1L);
+        postService.deletePost(post);
+        verify(postRepository, times(1)).delete(post);
     }
 
     @Test

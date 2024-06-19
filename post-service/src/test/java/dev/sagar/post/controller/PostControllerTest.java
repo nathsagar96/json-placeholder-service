@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
-class PostControllerIntegrationTest {
+class PostControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -74,12 +74,29 @@ class PostControllerIntegrationTest {
     }
 
     @Test
+    public void testGetPostByIdNotFound() throws Exception {
+        mockMvc.perform(get("/posts/100")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.error").value("Not Found"))
+                .andExpect(jsonPath("$.message").value("Post not found with id: 100"));
+    }
+
+    @Test
     void testCreatePost() throws Exception {
         mockMvc.perform(post("/posts")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"userId\":1, \"title\":\"New Post\", \"body\":\"This is a new post\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title", is("New Post")));
+    }
+
+    @Test
+    public void testCreatePostValidation() throws Exception {
+        mockMvc.perform(post("/posts")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{ \"userId\": 1, \"title\": \"\", \"body\": \"Sample body\" }"))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -92,7 +109,7 @@ class PostControllerIntegrationTest {
 
         mockMvc.perform(put("/posts/{id}", savedPost.getId())
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"title\": \"Updated Post\", \"body\": \"This is the updated post\"}"))
+                        .content("{\"userId\":1, \"title\":\"Updated Post\", \"body\":\"This is the updated post\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title", is("Updated Post")));
     }

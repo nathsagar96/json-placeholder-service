@@ -28,7 +28,7 @@ The Comment Service is built with the following technologies:
 - `POST /comments`: Create a new comment
 - `PUT /comments/{id}`: Update a comment by ID
 - `DELETE /comments/{id}`: Delete a comment by ID
-- `GET /comments/post/{postID}`: Retrieve all comments by a specific post
+- `GET /comments/post/{postId}`: Retrieve all comments by a specific post
 
 ## Installation
 
@@ -93,7 +93,7 @@ curl -X PUT "http://localhost:8080/comments/1" -H "Content-Type: application/jso
 curl -X DELETE "http://localhost:8080/comments/1"
 ```
 
-### Retrieve Comments by User ID
+### Retrieve Comments by post ID
 
 ```bash
 curl -X GET "http://localhost:8080/comments/post/1"

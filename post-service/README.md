@@ -17,7 +17,6 @@ The Post Service is built with the following technologies:
 - Spring Boot
 - Spring Data JPA
 - H2 Database (for in-memory database)
-- Spring Web
 - Spring Boot DevTools (for development)
 
 ## Endpoints
@@ -103,18 +102,10 @@ curl -X GET "http://localhost:8080/posts/user/1"
 
 ### Running Unit Tests
 
-Unit tests for the PostService can be run with the following command:
+Unit tests for the Post Service can be run with the following command:
 
 ```bash
 mvn clean install
-```
-
-### Running Integration Tests
-
-Integration tests for the PostController can be run with the same command:
-
-```bash
-mvn test
 ```
 
 These tests will verify that the service behaves correctly and handles various scenarios.

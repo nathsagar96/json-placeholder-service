@@ -20,7 +20,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.example.post" level="DEBUG" additivity="false">
+    <logger name="dev.sagar.post" level="DEBUG" additivity="false">
         <appender-ref ref="FILE" />
         <appender-ref ref="STDOUT" />
     </logger>

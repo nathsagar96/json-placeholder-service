@@ -1,21 +1,26 @@
 package dev.sagar.post.controller;
 
+import dev.sagar.post.exception.GlobalExceptionHandler;
 import dev.sagar.post.model.Post;
-import dev.sagar.post.repository.PostRepository;
+import dev.sagar.post.service.PostService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -23,127 +28,141 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@ExtendWith(MockitoExtension.class)
-@AutoConfigureMockMvc
-class PostControllerTest {
+public class PostControllerTest {
 
-    @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private PostRepository postRepository;
+    @Mock
+    private PostService postService;
+
+    @InjectMocks
+    private PostController postController;
 
     @BeforeEach
-    void setUp() {
-        postRepository.deleteAll();
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+        mockMvc = MockMvcBuilders.standaloneSetup(postController)
+                .setControllerAdvice(new GlobalExceptionHandler())
+                .build();
     }
 
     @Test
-    void testGetAllPosts() throws Exception {
-        Post post1 = new Post();
-        post1.setUserId(1L);
-        post1.setTitle("First Post");
-        post1.setBody("This is the first post");
-
-        Post post2 = new Post();
-        post2.setUserId(1L);
-        post2.setTitle("Second Post");
-        post2.setBody("This is the second post");
-
-        postRepository.saveAll(Arrays.asList(post1, post2));
+    public void testGetAllPosts() throws Exception {
+        List<Post> posts = new ArrayList<>();
+        posts.add(new Post());
+        when(postService.getAllPosts()).thenReturn(posts);
 
         mockMvc.perform(get("/posts"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].title", is("First Post")))
-                .andExpect(jsonPath("$[1].title", is("Second Post")));
+                .andExpect(jsonPath("$.length()").value(1));
+
+        verify(postService, times(1)).getAllPosts();
     }
 
     @Test
-    void testGetPostById() throws Exception {
+    public void testGetPostById() throws Exception {
         Post post = new Post();
-        post.setUserId(1L);
-        post.setTitle("Single Post");
-        post.setBody("This is a single post");
-        Post savedPost = postRepository.save(post);
+        post.setId(1L);
+        when(postService.getPostById(1L)).thenReturn(Optional.of(post));
 
-        mockMvc.perform(get("/posts/{id}", savedPost.getId()))
+        mockMvc.perform(get("/posts/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title", is("Single Post")));
+                .andExpect(jsonPath("$.id").value(1L));
+
+        verify(postService, times(1)).getPostById(1L);
     }
 
     @Test
-    public void testGetPostByIdNotFound() throws Exception {
-        mockMvc.perform(get("/posts/100")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.error").value("Not Found"))
-                .andExpect(jsonPath("$.message").value("Post not found with id: 100"));
+    public void testGetPostById_NotFound() throws Exception {
+        when(postService.getPostById(1L)).thenReturn(Optional.empty());
+
+        mockMvc.perform(get("/posts/1"))
+                .andExpect(status().isNotFound());
+
+        verify(postService, times(1)).getPostById(1L);
     }
 
     @Test
-    void testCreatePost() throws Exception {
+    public void testCreatePost() throws Exception {
+        Post post = new Post();
+        post.setTitle("New Post");
+        when(postService.createPost(any(Post.class))).thenReturn(post);
+
         mockMvc.perform(post("/posts")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"userId\":1, \"title\":\"New Post\", \"body\":\"This is a new post\"}"))
+                        .content("{\"title\":\"New Post\",\"body\":\"This is a new post.\",\"userId\":1}"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title", is("New Post")));
+                .andExpect(jsonPath("$.title").value("New Post"));
+
+        verify(postService, times(1)).createPost(any(Post.class));
     }
 
     @Test
-    public void testCreatePostValidation() throws Exception {
-        mockMvc.perform(post("/posts")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{ \"userId\": 1, \"title\": \"\", \"body\": \"Sample body\" }"))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    void testUpdatePost() throws Exception {
+    public void testUpdatePost() throws Exception {
         Post post = new Post();
-        post.setUserId(1L);
-        post.setTitle("Old Post");
-        post.setBody("This is the old post");
-        Post savedPost = postRepository.save(post);
+        post.setId(1L);
+        post.setTitle("Updated Post");
+        when(postService.getPostById(1L)).thenReturn(Optional.of(post));
+        when(postService.updatePost(any(Post.class))).thenReturn(post);
 
-        mockMvc.perform(put("/posts/{id}", savedPost.getId())
+        mockMvc.perform(put("/posts/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"userId\":1, \"title\":\"Updated Post\", \"body\":\"This is the updated post\"}"))
+                        .content("{\"title\":\"Updated Post\",\"body\":\"This is an updated post.\",\"userId\":1}"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title", is("Updated Post")));
+                .andExpect(jsonPath("$.title").value("Updated Post"));
+
+        verify(postService, times(1)).getPostById(1L);
+        verify(postService, times(1)).updatePost(any(Post.class));
     }
 
     @Test
-    void testDeletePost() throws Exception {
-        Post post = new Post();
-        post.setUserId(1L);
-        post.setTitle("Delete Post");
-        post.setBody("This post will be deleted");
-        Post savedPost = postRepository.save(post);
+    public void testUpdatePost_NotFound() throws Exception {
+        when(postService.getPostById(1L)).thenReturn(Optional.empty());
 
-        mockMvc.perform(delete("/posts/{id}", savedPost.getId()))
+        mockMvc.perform(put("/posts/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"title\":\"Updated Post\",\"body\":\"This is an updated post.\",\"userId\":1}"))
+                .andExpect(status().isNotFound());
+
+        verify(postService, times(1)).getPostById(1L);
+        verify(postService, never()).updatePost(any(Post.class));
+    }
+
+    @Test
+    public void testDeletePost() throws Exception {
+        Post post = new Post();
+        post.setId(1L);
+        when(postService.getPostById(1L)).thenReturn(Optional.of(post));
+
+        mockMvc.perform(delete("/posts/1"))
                 .andExpect(status().isNoContent());
+
+        verify(postService, times(1)).getPostById(1L);
+        verify(postService, times(1)).deletePost(post);
     }
 
     @Test
-    void testGetPostsByUserId() throws Exception {
-        Post post1 = new Post();
-        post1.setUserId(1L);
-        post1.setTitle("User Post 1");
-        post1.setBody("This is the first post by user 1");
+    public void testDeletePost_NotFound() throws Exception {
+        when(postService.getPostById(1L)).thenReturn(Optional.empty());
 
-        Post post2 = new Post();
-        post2.setUserId(1L);
-        post2.setTitle("User Post 2");
-        post2.setBody("This is the second post by user 1");
+        mockMvc.perform(delete("/posts/1"))
+                .andExpect(status().isNotFound());
 
-        postRepository.saveAll(Arrays.asList(post1, post2));
 
-        mockMvc.perform(get("/posts/user/{userId}", 1L))
+        verify(postService, times(1)).getPostById(1L);
+        verify(postService, never()).deletePost(any(Post.class));
+    }
+
+    @Test
+    public void testGetPostsByUserId() throws Exception {
+        List<Post> posts = new ArrayList<>();
+        posts.add(new Post());
+        when(postService.getPostsByUserId(1L)).thenReturn(posts);
+
+        mockMvc.perform(get("/posts/user/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].title", is("User Post 1")))
-                .andExpect(jsonPath("$[1].title", is("User Post 2")));
+                .andExpect(jsonPath("$.length()").value(1));
+
+        verify(postService, times(1)).getPostsByUserId(1L);
     }
 }

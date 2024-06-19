@@ -84,7 +84,7 @@ curl -X GET "http://localhost:8080/posts/1"
 ### Update a Post
 
 ```bash
-curl -X PUT "http://localhost:8080/posts/1" -H "Content-Type: application/json" -d '{"title":"Updated Post", "body":"This is an updated post"}'
+curl -X PUT "http://localhost:8080/posts/1" -H "Content-Type: application/json" -d '{"userId":1, "title":"Updated Post", "body":"This is an updated post"}'
 ```
 
 ### Delete a Post

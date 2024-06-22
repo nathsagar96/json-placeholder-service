@@ -39,7 +39,7 @@ The JSON Placeholder Service is composed of the following microservices:
    - Manages albums.
 
 4. **Photo Service**
-   - Repository: [Photo Service Repository](https://github.com/nathsagar96/json-placeholder-service/photo-service)
+   - Repository: [Photo Service Repository](photo-service)
    - Manages photos.
 
 5. **Todo Service**

@@ -43,11 +43,11 @@ The JSON Placeholder Service is composed of the following microservices:
    - Manages photos.
 
 5. **Todo Service**
-   - Repository: [Todo Service Repository](https://github.com/nathsagar96/json-placeholder-service/todo-service)
+   - Repository: [Todo Service Repository](todo-service)
    - Manages todos.
 
 6. **User Service**
-   - Repository: [User Service Repository](https://github.com/nathsagar96/json-placeholder-service/user-service)
+   - Repository: [User Service Repository](user-service)
    - Manages users.
 
 ## Installation
@@ -95,6 +95,7 @@ The JSON Placeholder Service is composed of the following microservices:
 - `POST /albums`: Create a new album
 - `PUT /albums/{id}`: Update an album by ID
 - `DELETE /albums/{id}`: Delete an album by ID
+- `GET /albums/user/{userId}`: Retrieve all albums by a specific user
 
 ### Photo Endpoints
 

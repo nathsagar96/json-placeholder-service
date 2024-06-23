@@ -61,43 +61,18 @@ The application will start and run on `http://localhost:8080`.
 
 ## Usage
 
-### Create a New User
+### Postman Collection
 
-```bash
-curl -X POST "http://localhost:8080/users" -H "Content-Type: application/json" -d '{
-    "name": "John Doe",
-    "username": "johndoe",
-    "email": "johndoe@example.com"
-}'
-```
+To facilitate testing, a Postman collection is provided. This collection includes requests to test all the endpoints of the User Service.
 
-### Retrieve All Users
-
-```bash
-curl -X GET "http://localhost:8080/users"
-```
-
-### Retrieve a User by ID
-
-```bash
-curl -X GET "http://localhost:8080/users/1"
-```
-
-### Update a User
-
-```bash
-curl -X PUT "http://localhost:8080/users/1" -H "Content-Type: application/json" -d '{
-    "name": "John Doe Updated",
-    "username": "johndoe_updated",
-    "email": "johndoe_updated@example.com"
-}'
-```
-
-### Delete a User
-
-```bash
-curl -X DELETE "http://localhost:8080/users/1"
-```
+1. Download the Postman collection file: [UserService.postman_collection.json](UserService.postman_collection.json)
+2. Import the collection into Postman:
+   - Open Postman.
+   - Click on the "Import" button in the top left corner.
+   - Select the "Upload Files" tab.
+   - Choose the UserService.postman_collection.json file you downloaded.
+   - Click the "Import" button.
+3. Use the imported collection to test the various endpoints of the User Service.
 
 ## Testing
 

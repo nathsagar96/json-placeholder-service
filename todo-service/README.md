@@ -64,41 +64,18 @@ The application will start and run on `http://localhost:8080`.
 
 ## Usage
 
-### Create a New Todo
+### Postman Collection
 
-```bash
-curl -X POST "http://localhost:8080/todos" -H "Content-Type: application/json" -d '{"userId": 1,"title": "New Todo","completed": false}'
-```
+To facilitate testing, a Postman collection is provided. This collection includes requests to test all the endpoints of the Todo Service.
 
-### Retrieve All Todos
-
-```bash
-curl -X GET "http://localhost:8080/todos"
-```
-
-### Retrieve a Todo by ID
-
-```bash
-curl -X GET "http://localhost:8080/todos/1"
-```
-
-### Update a Todo
-
-```bash
-curl -X PUT "http://localhost:8080/todos/1" -H "Content-Type: application/json" -d '{"userId": 1,"title": "Updated Todo","completed": true}'
-```
-
-### Delete a Todo
-
-```bash
-curl -X DELETE "http://localhost:8080/todos/1"
-```
-
-### Retrieve Todos by user ID
-
-```bash
-curl -X GET "http://localhost:8080/todos/user/1"
-```
+1. Download the Postman collection file: [TodoService.postman_collection.json](TodoService.postman_collection.json)
+2. Import the collection into Postman:
+   - Open Postman.
+   - Click on the "Import" button in the top left corner.
+   - Select the "Upload Files" tab.
+   - Choose the TodoService.postman_collection.json file you downloaded.
+   - Click the "Import" button.
+3. Use the imported collection to test the various endpoints of the Todo Service.
 
 ## Testing
 

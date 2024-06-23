@@ -62,42 +62,18 @@ The application will start and run on `http://localhost:8080`.
 
 ## Usage
 
-### Create a New Comment
+### Postman Collection
 
-```bash
-curl -X POST "http://localhost:8080/comments" -H "Content-Type: application/json" -d '{"postId": 1, "name": "John Doe", "email": "john.doe@example.com", "body": "This is a comment"}'
-```
+To facilitate testing, a Postman collection is provided. This collection includes requests to test all the endpoints of the Comment Service.
 
-### Retrieve All Comments
-
-```bash
-curl -X GET "http://localhost:8080/comments"
-```
-
-### Retrieve a Comment by ID
-
-```bash
-curl -X GET "http://localhost:8080/comments/1"
-```
-
-### Update a Comment
-
-```bash
-curl -X PUT "http://localhost:8080/comments/1" -H "Content-Type: application/json" -d '{"postId": 1, "name": "John Doe", "email": "john.doe@example.com", "body": "This is an updated comment"
-}'
-```
-
-### Delete a Comment
-
-```bash
-curl -X DELETE "http://localhost:8080/comments/1"
-```
-
-### Retrieve Comments by post ID
-
-```bash
-curl -X GET "http://localhost:8080/comments/post/1"
-```
+1. Download the Postman collection file: [CommentService.postman_collection.json](CommentService.postman_collection.json)
+2. Import the collection into Postman:
+   - Open Postman.
+   - Click on the "Import" button in the top left corner.
+   - Select the "Upload Files" tab.
+   - Choose the CommentService.postman_collection.json file you downloaded.
+   - Click the "Import" button.
+3. Use the imported collection to test the various endpoints of the Comment Service.
 
 ## Testing
 

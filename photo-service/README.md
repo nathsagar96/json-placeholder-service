@@ -62,41 +62,16 @@ The application will start and run on `http://localhost:8080`.
 
 ## Usage
 
-### Create a New Photo
+To facilitate testing, a Postman collection is provided. This collection includes requests to test all the endpoints of the Photo Service.
 
-```bash
-curl -X POST "http://localhost:8080/photos" -H "Content-Type: application/json" -d '{"albumId":1,"title":"New Photo","url":"http://example.com/photos/new-photo.jpg","thumbnailUrl":"http://example.com/photos/thumbnails/new-photo.jpg"}'
-```
-
-### Retrieve All Photos
-
-```bash
-curl -X GET "http://localhost:8080/photos"
-```
-
-### Retrieve a Photo by ID
-
-```bash
-curl -X GET "http://localhost:8080/photos/1"
-```
-
-### Update a Photo
-
-```bash
-curl -X PUT "http://localhost:8080/photos/1" -H "Content-Type: application/json" -d '{"albumId":1,"title":"Updated Photo","url":"http://example.com/photos/updated-photo.jpg","thumbnailUrl":"http://example.com/photos/thumbnails/updated-photo.jpg"}'
-```
-
-### Delete a Photo
-
-```bash
-curl -X DELETE "http://localhost:8080/photos/1"
-```
-
-### Retrieve Photos by user ID
-
-```bash
-curl -X GET "http://localhost:8080/photos/user/1"
-```
+1. Download the Postman collection file: [PhotoService.postman_collection.json](PhotoService.postman_collection.json)
+2. Import the collection into Postman:
+   - Open Postman.
+   - Click on the "Import" button in the top left corner.
+   - Select the "Upload Files" tab.
+   - Choose the PhotoService.postman_collection.json file you downloaded.
+   - Click the "Import" button.
+3. Use the imported collection to test the various endpoints of the Photo Service.
 
 ## Testing
 

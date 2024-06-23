@@ -20,8 +20,8 @@ public class GlobalExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(PhotoNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleAlbumNotFoundException(PhotoNotFoundException ex, WebRequest request) {
-        logger.error("Album not found exception: {}", ex.getMessage());
+    public ResponseEntity<Map<String, Object>> handlePhotoNotFoundException(PhotoNotFoundException ex, WebRequest request) {
+        logger.error("Photo not found exception: {}", ex.getMessage());
 
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());

@@ -62,41 +62,18 @@ The application will start and run on `http://localhost:8080`.
 
 ## Usage
 
-### Create a New Album
+### Postman Collection
 
-```bash
-curl -X POST "http://localhost:8080/albums" -H "Content-Type: application/json" -d '{"userId":1, "name":"Summer Vacation 2023"}'
-```
+To facilitate testing, a Postman collection is provided. This collection includes requests to test all the endpoints of the Album Service.
 
-### Retrieve All Albums
-
-```bash
-curl -X GET "http://localhost:8080/albums"
-```
-
-### Retrieve a Album by ID
-
-```bash
-curl -X GET "http://localhost:8080/albums/1"
-```
-
-### Update a Album
-
-```bash
-curl -X PUT "http://localhost:8080/albums/1" -H "Content-Type: application/json" -d '{"userId": 1, "name": "Skiing Holiday"}'
-```
-
-### Delete a Album
-
-```bash
-curl -X DELETE "http://localhost:8080/albums/1"
-```
-
-### Retrieve Albums by user ID
-
-```bash
-curl -X GET "http://localhost:8080/albums/user/1"
-```
+1. Download the Postman collection file: [AlbumService.postman_collection.json](AlbumService.postman_collection.json)
+2. Import the collection into Postman:
+   - Open Postman.
+   - Click on the "Import" button in the top left corner.
+   - Select the "Upload Files" tab.
+   - Choose the AlbumService.postman_collection.json file you downloaded.
+   - Click the "Import" button.
+3. Use the imported collection to test the various endpoints of the Album Service.
 
 ## Testing
 

@@ -14,7 +14,6 @@ The JSON Placeholder Service is a group of Spring Boot applications designed to 
 
 This project follows a microservices architecture, where each functionality is separated into individual services. The services communicate with each other via REST APIs. The project leverages Spring Cloud for service discovery, configuration management, and inter-service communication.
 
-
 ### Technologies Used
 
 - Spring Boot

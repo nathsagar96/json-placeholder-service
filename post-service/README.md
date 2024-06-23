@@ -62,41 +62,18 @@ The application will start and run on `http://localhost:8080`.
 
 ## Usage
 
-### Create a New Post
+### Postman Collection
 
-```bash
-curl -X POST "http://localhost:8080/posts" -H "Content-Type: application/json" -d '{"userId":1, "title":"New Post", "body":"This is a new post"}'
-```
+To facilitate testing, a Postman collection is provided. This collection includes requests to test all the endpoints of the Post Service.
 
-### Retrieve All Posts
-
-```bash
-curl -X GET "http://localhost:8080/posts"
-```
-
-### Retrieve a Post by ID
-
-```bash
-curl -X GET "http://localhost:8080/posts/1"
-```
-
-### Update a Post
-
-```bash
-curl -X PUT "http://localhost:8080/posts/1" -H "Content-Type: application/json" -d '{"userId":1, "title":"Updated Post", "body":"This is an updated post"}'
-```
-
-### Delete a Post
-
-```bash
-curl -X DELETE "http://localhost:8080/posts/1"
-```
-
-### Retrieve Posts by User ID
-
-```bash
-curl -X GET "http://localhost:8080/posts/user/1"
-```
+1. Download the Postman collection file: [PostService.postman_collection.json](PostService.postman_collection.json)
+2. Import the collection into Postman:
+   - Open Postman.
+   - Click on the "Import" button in the top left corner.
+   - Select the "Upload Files" tab.
+   - Choose the PostService.postman_collection.json file you downloaded.
+   - Click the "Import" button.
+3. Use the imported collection to test the various endpoints of the Post Service.
 
 ## Testing
 
@@ -105,7 +82,7 @@ curl -X GET "http://localhost:8080/posts/user/1"
 Unit tests for the Post Service can be run with the following command:
 
 ```bash
-mvn clean install
+mvn clean test
 ```
 
 These tests will verify that the service behaves correctly and handles various scenarios.

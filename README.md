@@ -53,7 +53,7 @@ The JSON Placeholder Service is composed of the following microservices:
 
 ### Prerequisites
 
-- JDK 17 or later
+- JDK 21 or later
 - Maven 3.8.0 or later
 
 ### Steps

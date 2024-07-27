@@ -22,8 +22,6 @@ public class PostServiceTest {
 
   @Mock private PostRepository postRepository;
 
-  @Captor private ArgumentCaptor<Integer> integerCaptor;
-
   @InjectMocks private PostService postService;
 
   @Test

@@ -10,22 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
-/**
- * A global exception handler for the application. This class is annotated with {@link
- * ControllerAdvice} to make it a global exception handler. It handles exceptions thrown by the
- * controllers and provides appropriate responses.
- */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-  /**
-   * Handles {@link PostNotFoundException} exceptions. It sets the response status to 404 (Not
-   * Found) and constructs a response body with details about the exception.
-   *
-   * @param ex The {@link PostNotFoundException} that occurred.
-   * @param request The {@link WebRequest} that triggered the exception.
-   * @return A {@link ResponseEntity} containing the constructed response body and status.
-   */
   @ExceptionHandler(PostNotFoundException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
   public ResponseEntity<Map<String, Object>> handlePostNotFoundException(
@@ -41,14 +28,6 @@ public class GlobalExceptionHandler {
     return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
   }
 
-  /**
-   * Handles all other exceptions. It sets the response status to 500 (Internal Server Error) and
-   * constructs a response body with details about the exception.
-   *
-   * @param ex The {@link Exception} that occurred.
-   * @param request The {@link WebRequest} that triggered the exception.
-   * @return A {@link ResponseEntity} containing the constructed response body and status.
-   */
   @ExceptionHandler(Exception.class)
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   public ResponseEntity<Map<String, Object>> handleGlobalException(

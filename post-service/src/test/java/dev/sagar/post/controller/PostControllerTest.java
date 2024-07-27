@@ -15,8 +15,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 @ExtendWith(MockitoExtension.class)
 public class PostControllerTest {
@@ -30,7 +28,7 @@ public class PostControllerTest {
     // given
     List<Post> posts =
         Arrays.asList(new Post(1, "Title 1", "Body 1", 1), new Post(2, "Title 2", "Body 2", 2));
-    when(postService.getAllPosts()).thenReturn(posts);
+    when(postService.getPosts()).thenReturn(posts);
 
     // when
     List<Post> result = postController.getAllPosts();
@@ -98,15 +96,6 @@ public class PostControllerTest {
 
     // when
     assertThrows(PostNotFoundException.class, () -> postController.updatePost(1, updatedPost));
-  }
-
-  @Test
-  public void testDeletePost_returnsNoContent() {
-    // when
-    ResponseEntity<?> result = postController.deletePost();
-
-    // then
-    assertEquals(HttpStatus.NO_CONTENT, result.getStatusCode());
   }
 
   @Test

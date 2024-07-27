@@ -72,7 +72,7 @@ The JSON Placeholder Service is composed of the following microservices:
 
 ### Post Endpoints
 
-- `GET //api/v1/posts`: Retrieve all posts
+- `GET /api/v1/posts`: Retrieve all posts
 - `GET /api/v1/posts/{id}`: Retrieve a post by ID
 - `POST /api/v1/posts`: Create a new post
 - `PUT /api/v1/posts/{id}`: Update a post by ID

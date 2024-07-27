@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: comment-service
+  jpa:
+    open-in-view: false
+  datasource:
+    url: jdbc:h2:mem:comment-db
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+
+server:
+  port: 8081

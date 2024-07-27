@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
  * This interface represents a repository for managing {@link Post} entities. It extends Spring Data
  * JPA's {@link JpaRepository} interface, providing basic CRUD operations and additional methods for
  * querying {@link Post} entities.
- *
- * @author Sagar
  */
 @Repository
 public interface PostRepository extends JpaRepository<Post, Integer> {

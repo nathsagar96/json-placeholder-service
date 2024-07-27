@@ -28,7 +28,6 @@
     </scm>
     <properties>
         <java.version>21</java.version>
-        <datafaker.version>2.3.1</datafaker.version>
     </properties>
     <dependencies>
         <dependency>

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/nathsagar96/json-placeholder-service-config-repo.git
+          skip-ssl-validation: true
+          clone-on-start: true
+
+server:
+  port: 8888

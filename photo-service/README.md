@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a Spring Boot application that provides a RESTful API for managing album photos. The API allows users to
+This is a Spring Boot application that provides a RESTful API for managing album photos. The API allows clients to
 create,
 retrieve, update, and delete photos. Each photo contains a title, url, thumbnail url and is associated with an album.
 

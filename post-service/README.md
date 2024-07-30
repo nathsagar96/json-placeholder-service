@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a Spring Boot application that provides a RESTful API for managing blog posts. The API allows users to create,
+This is a Spring Boot application that provides a RESTful API for managing blog posts. The API allows clients to create,
 retrieve, update, and delete posts. Each post contains a title, body, and is associated with a user.
 
 ## Prerequisites

@@ -14,6 +14,8 @@ The JSON Placeholder Service is a group of Spring Boot applications designed to 
 
 This project follows a microservices architecture, where each functionality is separated into individual services. The project leverages Spring Cloud for api gateway, service discovery and configuration management.
 
+![architecure diagram](json-placeholder-service-architecture-diagram.png)
+
 ### Technologies Used
 
 - Spring Boot
@@ -26,27 +28,27 @@ This project follows a microservices architecture, where each functionality is s
 The JSON Placeholder Service is composed of the following microservices:
 
 1. **Post Service**
-   - Repository: [Post Service Repository](post-service)
+   - Folder: [Post Service](post-service)
    - Manages posts.
 
 2. **Comment Service**
-   - Repository: [Comment Service Repository](comment-service)
+   - Folder: [Comment Service](comment-service)
    - Manages comments.
 
 3. **Album Service**
-   - Repository: [Album Service Repository](album-service)
+   - Folder: [Album Service](album-service)
    - Manages albums.
 
 4. **Photo Service**
-   - Repository: [Photo Service Repository](photo-service)
+   - Folder: [Photo Service](photo-service)
    - Manages photos.
 
 5. **Todo Service**
-   - Repository: [Todo Service Repository](todo-service)
+   - Folder: [Todo Service](todo-service)
    - Manages todos.
 
 6. **User Service**
-   - Repository: [User Service Repository](user-service)
+   - Folder: [User Service](user-service)
    - Manages users.
 
 ## Installation

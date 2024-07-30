@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a Spring Boot application that provides a RESTful API for managing todos. The API allows users to
+This is a Spring Boot application that provides a RESTful API for managing todos. The API allows clients to
 create,
 retrieve, update, and delete todos. Each todo contains a title, status and is associated with a user.
 

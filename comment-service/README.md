@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a Spring Boot application that provides a RESTful API for managing blog comments. The API allows users to
+This is a Spring Boot application that provides a RESTful API for managing blog comments. The API allows clients to
 create,
 retrieve, update, and delete comments. Each comment contains a name, email, body, and is associated with a post.
 

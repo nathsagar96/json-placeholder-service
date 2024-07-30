@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class PostService {
-  private final PostRepository repository;
+  private final PostRepository postRepository;
 
   public List<Post> getPosts() {
-    return repository.findAll();
+    return postRepository.findAll();
   }
 
   public Optional<Post> getPostById(Integer id) {
-    return repository.findById(id);
+    return postRepository.findById(id);
   }
 
   public List<Post> getPostsByUserId(Integer userId) {
-    return repository.findByUserId(userId);
+    return postRepository.findByUserId(userId);
   }
 }

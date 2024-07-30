@@ -20,16 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/posts")
 public class PostController {
-  private final PostService service;
+  private final PostService postService;
 
   @GetMapping
   public List<Post> getAllPosts() {
-    return service.getPosts();
+    return postService.getPosts();
   }
 
   @GetMapping("/{id}")
   public Post getPostById(@PathVariable Integer id) {
-    return service
+    return postService
         .getPostById(id)
         .orElseThrow(() -> new PostNotFoundException("Post not found with id: " + id));
   }
@@ -43,7 +43,7 @@ public class PostController {
   @PutMapping("/{id}")
   public Post updatePost(@PathVariable Integer id, @RequestBody Post postDetails) {
     Post post =
-        service
+        postService
             .getPostById(id)
             .orElseThrow(() -> new PostNotFoundException("Post not found with id: " + id));
 
@@ -61,6 +61,6 @@ public class PostController {
 
   @GetMapping("/user/{userId}")
   public List<Post> getPostsByUserId(@PathVariable Integer userId) {
-    return service.getPostsByUserId(userId);
+    return postService.getPostsByUserId(userId);
   }
 }

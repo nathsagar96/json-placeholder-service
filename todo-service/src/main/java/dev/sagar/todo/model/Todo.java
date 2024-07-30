@@ -2,6 +2,8 @@ package dev.sagar.todo.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +19,10 @@ import lombok.Setter;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Todo {
-  @Id private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
+
   private String title;
   private Boolean completed;
   private Integer userId;

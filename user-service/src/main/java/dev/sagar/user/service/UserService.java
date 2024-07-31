@@ -4,7 +4,6 @@ import dev.sagar.user.model.User;
 import dev.sagar.user.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

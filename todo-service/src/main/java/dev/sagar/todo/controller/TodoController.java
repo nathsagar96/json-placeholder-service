@@ -31,8 +31,8 @@ public class TodoController {
   @GetMapping("/{id}")
   public Todo getTodoById(@PathVariable Integer id) {
     return todoService
-            .getTodoById(id)
-            .orElseThrow(() -> new TodoNotFoundException("Todo not found with id: " + id));
+        .getTodoById(id)
+        .orElseThrow(() -> new TodoNotFoundException("Todo not found with id: " + id));
   }
 
   @PostMapping
@@ -44,9 +44,9 @@ public class TodoController {
   @PutMapping("/{id}")
   public Todo updateTodo(@PathVariable Integer id, @RequestBody Todo todoDetails) {
     Todo todo =
-            todoService
-                    .getTodoById(id)
-                    .orElseThrow(() -> new TodoNotFoundException("Todo not found with id: " + id));
+        todoService
+            .getTodoById(id)
+            .orElseThrow(() -> new TodoNotFoundException("Todo not found with id: " + id));
 
     todo.setId(id);
     todo.setTitle(todoDetails.getTitle());

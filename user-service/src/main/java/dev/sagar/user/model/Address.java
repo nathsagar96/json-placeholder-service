@@ -1,5 +1,6 @@
 package dev.sagar.user.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -24,6 +25,7 @@ import lombok.Setter;
 public class Address {
 
   @Id
+  @JsonIgnore
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 

@@ -16,19 +16,18 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
-    private final ObjectMapper objectMapper;
-    private final UserRepository userRepository;
+  private final ObjectMapper objectMapper;
+  private final UserRepository userRepository;
 
-    @Override
-    public void run(String... args) {
-        try {
-            TypeReference<List<User>> typeReference = new TypeReference<>() {};
-            InputStream inputStream = getClass().getResourceAsStream("/data/users.json");
-            List<User> users = objectMapper.readValue(inputStream, typeReference);
-            userRepository.saveAll(users);
-        } catch (IOException ioException) {
-            log.error("Unable to load users", ioException);
-        }
+  @Override
+  public void run(String... args) {
+    try {
+      TypeReference<List<User>> typeReference = new TypeReference<>() {};
+      InputStream inputStream = getClass().getResourceAsStream("/data/users.json");
+      List<User> users = objectMapper.readValue(inputStream, typeReference);
+      userRepository.saveAll(users);
+    } catch (IOException ioException) {
+      log.error("Unable to load users", ioException);
     }
+  }
 }
-

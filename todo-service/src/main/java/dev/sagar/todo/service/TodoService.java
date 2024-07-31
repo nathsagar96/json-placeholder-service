@@ -11,17 +11,17 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class TodoService {
 
-    private final TodoRepository todoRepository;
+  private final TodoRepository todoRepository;
 
-    public List<Todo> getTodos() {
-        return todoRepository.findAll();
-    }
+  public List<Todo> getTodos() {
+    return todoRepository.findAll();
+  }
 
-    public Optional<Todo> getTodoById(Integer id) {
-        return todoRepository.findById(id);
-    }
+  public Optional<Todo> getTodoById(Integer id) {
+    return todoRepository.findById(id);
+  }
 
-    public List<Todo> getTodosByUserId(Integer userId) {
-        return todoRepository.findByUserId(userId);
-    }
+  public List<Todo> getTodosByUserId(Integer userId) {
+    return todoRepository.findByUserId(userId);
+  }
 }

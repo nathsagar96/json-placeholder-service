@@ -1,5 +1,6 @@
 package dev.sagar.user.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Company {
   @Id
+  @JsonIgnore
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 

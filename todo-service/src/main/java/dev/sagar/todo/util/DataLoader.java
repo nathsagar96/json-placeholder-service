@@ -16,19 +16,18 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
-    private final ObjectMapper objectMapper;
-    private final TodoRepository todoRepository;
+  private final ObjectMapper objectMapper;
+  private final TodoRepository todoRepository;
 
-    @Override
-    public void run(String... args) {
-        try {
-            TypeReference<List<Todo>> typeReference = new TypeReference<>() {};
-            InputStream inputStream = getClass().getResourceAsStream("/data/todos.json");
-            List<Todo> todos = objectMapper.readValue(inputStream, typeReference);
-            todoRepository.saveAll(todos);
-        } catch (IOException ioException) {
-            log.error("Unable to load todos", ioException);
-        }
+  @Override
+  public void run(String... args) {
+    try {
+      TypeReference<List<Todo>> typeReference = new TypeReference<>() {};
+      InputStream inputStream = getClass().getResourceAsStream("/data/todos.json");
+      List<Todo> todos = objectMapper.readValue(inputStream, typeReference);
+      todoRepository.saveAll(todos);
+    } catch (IOException ioException) {
+      log.error("Unable to load todos", ioException);
     }
+  }
 }
-

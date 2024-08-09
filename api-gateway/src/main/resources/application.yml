@@ -3,32 +3,31 @@ spring:
     name: api-gateway
   cloud:
     gateway:
-      mvc:
-        routes:
-          - id: post-service
-            uri: lb://POST-SERVICE
-            predicates:
-              - Path=/posts/**
-          - id: comment-service
-            uri: lb://COMMENT-SERVICE
-            predicates:
-              - Path=/comments/**
-          - id: album-service
-            uri: lb://ALBUM-SERVICE
-            predicates:
-              - Path=/albums/**
-          - id: photo-service
-            uri: lb://PHOTO-SERVICE
-            predicates:
-              - Path=/photos/**
-          - id: todo-service
-            uri: lb://TODO-SERVICE
-            predicates:
-              - Path=/todos/**
-          - id: user-service
-            uri: lb://USER-SERVICE
-            predicates:
-              - Path=/users/**
+      routes:
+        - id: post-service
+          uri: lb://POST-SERVICE
+          predicates:
+            - Path=/posts/**
+        - id: comment-service
+          uri: lb://COMMENT-SERVICE
+          predicates:
+            - Path=/comments/**
+        - id: album-service
+          uri: lb://ALBUM-SERVICE
+          predicates:
+            - Path=/albums/**
+        - id: photo-service
+          uri: lb://PHOTO-SERVICE
+          predicates:
+            - Path=/photos/**
+        - id: todo-service
+          uri: lb://TODO-SERVICE
+          predicates:
+            - Path=/todos/**
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
 
 eureka:
   client:

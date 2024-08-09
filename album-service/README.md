@@ -42,7 +42,7 @@ The application will start and be accessible at http://localhost:8082.
 
 ### Get all albums
 
-- URL: /api/v1/albums
+- URL: /albums
 - Method: GET
 - Response: A list of all albums
 
@@ -58,7 +58,7 @@ The application will start and be accessible at http://localhost:8082.
 
 ### Get an album by ID
 
-- URL: /api/v1/albums/{id}
+- URL: /albums/{id}
 - Method: GET
 - Path Variable: id (Integer) - ID of the album
 - Response: The album with the specified ID
@@ -73,7 +73,7 @@ The application will start and be accessible at http://localhost:8082.
 
 ### Create a new album
 
-- URL: /api/v1/albums
+- URL: /albums
 - Method: POST
 - Request Body: A JSON object representing the new album
 - Response: The created album
@@ -88,7 +88,7 @@ The application will start and be accessible at http://localhost:8082.
 
 ### Update a album
 
-- URL: /api/v1/albums/{id}
+- URL: /albums/{id}
 - Method: PUT
 - Path Variable: id (Integer) - ID of the album to update
 - Request Body: A JSON object with the updated album details
@@ -104,14 +104,14 @@ The application will start and be accessible at http://localhost:8082.
 
 ### Delete a album
 
-- URL: /api/v1/albums/{id}
+- URL: /albums/{id}
 - Method: DELETE
 - Path Variable: id (Integer) - ID of the album to delete
 - Response: 204 No Content
 
 ### Get albums by user ID
 
-- URL: /api/v1/albums/user/{userId}
+- URL: /albums/user/{userId}
 - Method: GET
 - Path Variable: userId (Integer) - ID of the user
 - Response: A list of albums by the specified user

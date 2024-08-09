@@ -42,7 +42,7 @@ The application will start and be accessible at http://localhost:8084.
 
 ### Get all todos
 
-- URL: /api/v1/todos
+- URL: /todos
 - Method: GET
 - Response: A list of all todos
 
@@ -59,7 +59,7 @@ The application will start and be accessible at http://localhost:8084.
 
 ### Get a todo by ID
 
-- URL: /api/v1/todos/{id}
+- URL: /todos/{id}
 - Method: GET
 - Path Variable: id (Integer) - ID of the todo
 - Response: The todo with the specified ID
@@ -75,7 +75,7 @@ The application will start and be accessible at http://localhost:8084.
 
 ### Create a new todo
 
-- URL: /api/v1/todos
+- URL: /todos
 - Method: POST
 - Request Body: A JSON object representing the new todo
 - Response: The created todo
@@ -91,7 +91,7 @@ The application will start and be accessible at http://localhost:8084.
 
 ### Update a todo
 
-- URL: /api/v1/todos/{id}
+- URL: /todos/{id}
 - Method: PUT
 - Path Variable: id (Integer) - ID of the todo to update
 - Request Body: A JSON object with the updated todo details
@@ -108,14 +108,14 @@ The application will start and be accessible at http://localhost:8084.
 
 ### Delete a todo
 
-- URL: /api/v1/todos/{id}
+- URL: /todos/{id}
 - Method: DELETE
 - Path Variable: id (Integer) - ID of the todo to delete
 - Response: 204 No Content
 
 ### Get todos by user ID
 
-- URL: /api/v1/todos/user/{userId}
+- URL: /todos/user/{userId}
 - Method: GET
 - Path Variable: userId (Integer) - ID of the user
 - Response: A list of todos by the specified user

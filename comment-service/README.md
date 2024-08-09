@@ -42,7 +42,7 @@ The application will start and be accessible at http://localhost:8081.
 
 ### Get all comments
 
-- URL: /api/v1/comments
+- URL: /comments
 - Method: GET
 - Response: A list of all comments
 
@@ -60,7 +60,7 @@ The application will start and be accessible at http://localhost:8081.
 
 ### Get a comment by ID
 
-- URL: /api/v1/comments/{id}
+- URL: /comments/{id}
 - Method: GET
 - Path Variable: id (Integer) - ID of the comment
 - Response: The comment with the specified ID
@@ -77,7 +77,7 @@ The application will start and be accessible at http://localhost:8081.
 
 ### Create a new comment
 
-- URL: /api/v1/comments
+- URL: /comments
 - Method: POST
 - Request Body: A JSON object representing the new comment
 - Response: The created comment
@@ -94,7 +94,7 @@ The application will start and be accessible at http://localhost:8081.
 
 ### Update a comment
 
-- URL: /api/v1/comments/{id}
+- URL: /comments/{id}
 - Method: PUT
 - Path Variable: id (Integer) - ID of the comment to update
 - Request Body: A JSON object with the updated comment details
@@ -112,14 +112,14 @@ The application will start and be accessible at http://localhost:8081.
 
 ### Delete a comment
 
-- URL: /api/v1/comments/{id}
+- URL: /comments/{id}
 - Method: DELETE
 - Path Variable: id (Integer) - ID of the comment to delete
 - Response: 204 No Content
 
 ### Get comments by post ID
 
-- URL: /api/v1/comments/post/{postId}
+- URL: /comments/post/{postId}
 - Method: GET
 - Path Variable: postId (Integer) - ID of the post
 - Response: A list of comments by the specified post

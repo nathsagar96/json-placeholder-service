@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/api/v1/comments")
+@RequestMapping(path = "/comments")
 public class CommentController {
 
   private final CommentService commentService;

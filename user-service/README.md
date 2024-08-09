@@ -42,7 +42,7 @@ The application will start and be accessible at http://localhost:8085.
 
 ### Get all users
 
-- URL: /api/v1/users
+- URL: /users
 - Method: GET
 - Response: A list of all users
 
@@ -76,7 +76,7 @@ The application will start and be accessible at http://localhost:8085.
 
 ### Get a user by ID
 
-- URL: /api/v1/users/{id}
+- URL: /users/{id}
 - Method: GET
 - Path Variable: id (Integer) - ID of the user
 - Response: The user with the specified ID
@@ -109,7 +109,7 @@ The application will start and be accessible at http://localhost:8085.
 
 ### Create a new user
 
-- URL: /api/v1/users
+- URL: /users
 - Method: POST
 - Request Body: A JSON object representing the new user
 - Response: The created user
@@ -142,7 +142,7 @@ The application will start and be accessible at http://localhost:8085.
 
 ### Update a user
 
-- URL: /api/v1/users/{id}
+- URL: /users/{id}
 - Method: PUT
 - Path Variable: id (Integer) - ID of the user to update
 - Request Body: A JSON object with the updated user details
@@ -176,7 +176,7 @@ The application will start and be accessible at http://localhost:8085.
 
 ### Delete a user
 
-- URL: /api/v1/users/{id}
+- URL: /users/{id}
 - Method: DELETE
 - Path Variable: id (Integer) - ID of the user to delete
 - Response: 204 No Content

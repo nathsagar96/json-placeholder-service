@@ -41,7 +41,7 @@ The application will start and be accessible at http://localhost:8080.
 
 ### Get all posts
 
-- URL: /api/v1/posts
+- URL: /posts
 - Method: GET
 - Response: A list of all posts
 
@@ -58,7 +58,7 @@ The application will start and be accessible at http://localhost:8080.
 
 ### Get a post by ID
 
-- URL: /api/v1/posts/{id}
+- URL: /posts/{id}
 - Method: GET
 - Path Variable: id (Integer) - ID of the post
 - Response: The post with the specified ID
@@ -74,7 +74,7 @@ The application will start and be accessible at http://localhost:8080.
 
 ### Create a new post
 
-- URL: /api/v1/posts
+- URL: /posts
 - Method: POST
 - Request Body: A JSON object representing the new post
 - Response: The created post
@@ -90,7 +90,7 @@ The application will start and be accessible at http://localhost:8080.
 
 ### Update a post
 
-- URL: /api/v1/posts/{id}
+- URL: /posts/{id}
 - Method: PUT
 - Path Variable: id (Integer) - ID of the post to update
 - Request Body: A JSON object with the updated post details
@@ -107,14 +107,14 @@ The application will start and be accessible at http://localhost:8080.
 
 ### Delete a post
 
-- URL: /api/v1/posts/{id}
+- URL: /posts/{id}
 - Method: DELETE
 - Path Variable: id (Integer) - ID of the post to delete
 - Response: 204 No Content
 
 ### Get posts by user ID
 
-- URL: /api/v1/posts/user/{userId}
+- URL: /posts/user/{userId}
 - Method: GET
 - Path Variable: userId (Integer) - ID of the user
 - Response: A list of posts by the specified user

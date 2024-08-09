@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/api/v1/albums")
+@RequestMapping(path = "/albums")
 @RequiredArgsConstructor
 public class AlbumController {
   private final AlbumService albumService;

@@ -42,7 +42,7 @@ The application will start and be accessible at http://localhost:8083.
 
 ### Get all photos
 
-- URL: /api/v1/photos
+- URL: /photos
 - Method: GET
 - Response: A list of all photos
 
@@ -60,7 +60,7 @@ The application will start and be accessible at http://localhost:8083.
 
 ### Get a photo by ID
 
-- URL: /api/v1/photos/{id}
+- URL: /photos/{id}
 - Method: GET
 - Path Variable: id (Integer) - ID of the photo
 - Response: The photo with the specified ID
@@ -77,7 +77,7 @@ The application will start and be accessible at http://localhost:8083.
 
 ### Create a new photo
 
-- URL: /api/v1/photos
+- URL: /photos
 - Method: POST
 - Request Body: A JSON object representing the new photo
 - Response: The created photo
@@ -94,7 +94,7 @@ The application will start and be accessible at http://localhost:8083.
 
 ### Update a photo
 
-- URL: /api/v1/photos/{id}
+- URL: /photos/{id}
 - Method: PUT
 - Path Variable: id (Integer) - ID of the photo to update
 - Request Body: A JSON object with the updated photo details
@@ -112,14 +112,14 @@ The application will start and be accessible at http://localhost:8083.
 
 ### Delete a photo
 
-- URL: /api/v1/photos/{id}
+- URL: /photos/{id}
 - Method: DELETE
 - Path Variable: id (Integer) - ID of the photo to delete
 - Response: 204 No Content
 
 ### Get photos by post ID
 
-- URL: /api/v1/photos/album/{albumId}
+- URL: /photos/album/{albumId}
 - Method: GET
 - Path Variable: albumId (Integer) - ID of the album
 - Response: A list of photos by the specified album

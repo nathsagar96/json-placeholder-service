@@ -28,6 +28,58 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/users/**
+        - id: post-service-api-docs
+          uri: lb://POST-SERVICE
+          predicates:
+            - Path=/post-api-docs
+          filters:
+            - RewritePath=/post-api-docs, /v3/api-docs
+        - id: comment-service-api-docs
+          uri: lb://COMMENT-SERVICE
+          predicates:
+            - Path=/comment-api-docs
+          filters:
+            - RewritePath=/comment-api-docs, /v3/api-docs
+        - id: album-service-api-docs
+          uri: lb://ALBUM-SERVICE
+          predicates:
+            - Path=/album-api-docs
+          filters:
+            - RewritePath=/album-api-docs, /v3/api-docs
+        - id: photo-service-api-docs
+          uri: lb://PHOTO-SERVICE
+          predicates:
+            - Path=/photo-api-docs
+          filters:
+            - RewritePath=/photo-api-docs, /v3/api-docs
+        - id: todo-service-api-docs
+          uri: lb://TODO-SERVICE
+          predicates:
+            - Path=/todo-api-docs
+          filters:
+            - RewritePath=/todo-api-docs, /v3/api-docs
+        - id: user-service-api-docs
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-api-docs
+          filters:
+            - RewritePath=/user-api-docs, /v3/api-docs
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: Post Service
+        url: /post-api-docs
+      - name: Comment Service
+        url: /comment-api-docs
+      - name: Album Service
+        url: /album-api-docs
+      - name: Photo Service
+        url: /photo-api-docs
+      - name: Todo Service
+        url: /todo-api-docs
+      - name: User Service
+        url: /user-api-docs
 
 eureka:
   client:
@@ -36,6 +88,4 @@ eureka:
 
 server:
   port: 8090
-
-
-
+  forward-headers-strategy: framework

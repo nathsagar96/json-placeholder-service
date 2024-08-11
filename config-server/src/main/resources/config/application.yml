@@ -1,3 +1,6 @@
+server:
+  forward-headers-strategy: framework
+
 spring:
   jpa:
     open-in-view: false
@@ -6,3 +9,10 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+  instance:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

@@ -20,11 +20,11 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Post {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-  private String title;
-  private String body;
-  private Integer userId;
+    private Integer id;
+    private String title;
+    private String body;
+    private Integer userId;
 }

@@ -8,7 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 public class PhotoServiceApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(PhotoServiceApplication.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(PhotoServiceApplication.class, args);
+    }
 }

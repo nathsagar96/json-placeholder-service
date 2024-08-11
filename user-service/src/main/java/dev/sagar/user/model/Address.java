@@ -24,17 +24,17 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Address {
 
-  @Id
-  @JsonIgnore
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+    @Id
+    @JsonIgnore
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-  private String street;
-  private String suite;
-  private String city;
-  private String zipcode;
+    private String street;
+    private String suite;
+    private String city;
+    private String zipcode;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "geo_id", referencedColumnName = "id")
-  private Geo geo;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "geo_id", referencedColumnName = "id")
+    private Geo geo;
 }

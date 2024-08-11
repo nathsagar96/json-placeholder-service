@@ -21,20 +21,21 @@ import lombok.Setter;
 @Entity(name = "users")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
-  @Id private Integer id;
-  private String name;
+    @Id
+    private Integer id;
+    private String name;
 
-  private String username;
-  private String email;
+    private String username;
+    private String email;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "address_id", referencedColumnName = "id")
-  private Address address;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 
-  private String phone;
-  private String website;
+    private String phone;
+    private String website;
 
-  @ManyToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "company_id", referencedColumnName = "id")
-  private Company company;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
+    private Company company;
 }

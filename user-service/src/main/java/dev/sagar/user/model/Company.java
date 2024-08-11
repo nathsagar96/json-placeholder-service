@@ -20,12 +20,12 @@ import lombok.Setter;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Company {
-  @Id
-  @JsonIgnore
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+    @Id
+    @JsonIgnore
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-  private String name;
-  private String catchPhrase;
-  private String bs;
+    private String name;
+    private String catchPhrase;
+    private String bs;
 }

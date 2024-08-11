@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfig {
 
-  @Bean
-  public OpenAPI openAPI() {
-    return new OpenAPI()
-        .info(
-            new Info()
-                .title("Album Service API")
-                .description("Album Service API for Json Placeholder Service")
-                .version("1.0.0"));
-  }
+    @Bean
+    public OpenAPI openAPI() {
+        return new OpenAPI()
+                .info(
+                        new Info()
+                                .title("Album Service API")
+                                .description("Album Service API for Json Placeholder Service")
+                                .version("1.0.0"));
+    }
 }

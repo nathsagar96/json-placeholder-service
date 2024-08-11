@@ -19,12 +19,12 @@ import lombok.Setter;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Comment {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-  private String name;
-  private String email;
-  private String body;
-  private Integer postId;
+    private String name;
+    private String email;
+    private String body;
+    private Integer postId;
 }

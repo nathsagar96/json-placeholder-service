@@ -66,7 +66,7 @@ class PhotoControllerTest {
     @Test
     void testCreatePhoto_returnsCreatedPhoto() {
         // given
-        Photo photo = new Photo(null, "title", "url", "thumbnailUrl", 1);
+        Photo photo = new Photo(5001, "title", "url", "thumbnailUrl", 1);
         Photo createdPhoto = new Photo(5001, "title", "url", "thumbnailUrl", 1);
 
         // when

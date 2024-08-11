@@ -30,7 +30,7 @@ public class TodoController {
     }
 
     @GetMapping("/{id}")
-    public Todo getTodoById(@PathVariable Integer id) {
+    public Todo getTodoById(@PathVariable int id) {
         return todoService
                 .getTodoById(id)
                 .orElseThrow(() -> new TodoNotFoundException("Todo not found with id: " + id));
@@ -43,7 +43,7 @@ public class TodoController {
     }
 
     @PutMapping("/{id}")
-    public Todo updateTodo(@PathVariable Integer id, @RequestBody Todo todoDetails) {
+    public Todo updateTodo(@PathVariable int id, @RequestBody Todo todoDetails) {
         Todo todo =
                 todoService
                         .getTodoById(id)
@@ -58,11 +58,11 @@ public class TodoController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteTodo() {
+    public void deleteTodo(@PathVariable int id) {
     }
 
     @GetMapping("/user/{userId}")
-    public List<Todo> getTodosByUserId(@PathVariable Integer userId) {
+    public List<Todo> getTodosByUserId(@PathVariable int userId) {
         return todoService.getTodosByUserId(userId);
     }
 }

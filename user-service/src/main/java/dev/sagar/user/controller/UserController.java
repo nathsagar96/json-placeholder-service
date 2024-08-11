@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable Integer id) {
+    public User getUserById(@PathVariable int id) {
         return userService
                 .getUserById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Integer id, @RequestBody User userDetails) {
+    public User updateUser(@PathVariable int id, @RequestBody User userDetails) {
         User user =
                 userService
                         .getUserById(id)
@@ -62,6 +62,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser() {
+    public void deleteUser(@PathVariable int id) {
     }
 }
+

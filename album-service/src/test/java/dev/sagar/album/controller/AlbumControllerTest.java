@@ -66,7 +66,7 @@ class AlbumControllerTest {
     @Test
     void testCreateAlbum_returnsCreatedAlbum() {
         // given
-        Album album = new Album(null, "Title 1", 1);
+        Album album = new Album(101, "Title 1", 1);
         Album createdAlbum = new Album(101, "Title 1", 1);
 
         // when

@@ -88,4 +88,29 @@ eureka:
 
 server:
   port: 8090
-  forward-headers-strategy: framework
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - metrics
+          - prometheus
+  tracing:
+    sampling:
+      probability: 1.0
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+  observations:
+    key-values:
+      application: ${spring.application.name}
+
+loki:
+  url: http://localhost:3100/loki/api/v1/push
+

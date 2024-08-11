@@ -19,11 +19,12 @@ import lombok.Setter;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Todo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     private String title;
     private Boolean completed;
-    private Integer userId;
+    private int userId;
 }

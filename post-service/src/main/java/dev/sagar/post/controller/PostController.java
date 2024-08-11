@@ -29,7 +29,7 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    public Post getPostById(@PathVariable Integer id) {
+    public Post getPostById(@PathVariable int id) {
         return postService
                 .getPostById(id)
                 .orElseThrow(() -> new PostNotFoundException("Post not found with id: " + id));
@@ -42,7 +42,7 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
-    public Post updatePost(@PathVariable Integer id, @RequestBody Post postDetails) {
+    public Post updatePost(@PathVariable int id, @RequestBody Post postDetails) {
         Post post =
                 postService
                         .getPostById(id)
@@ -58,11 +58,11 @@ public class PostController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePost() {
+    public void deletePost(@PathVariable int id) {
     }
 
     @GetMapping("/user/{userId}")
-    public List<Post> getPostsByUserId(@PathVariable Integer userId) {
+    public List<Post> getPostsByUserId(@PathVariable int userId) {
         return postService.getPostsByUserId(userId);
     }
 }

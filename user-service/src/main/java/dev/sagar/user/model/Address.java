@@ -27,7 +27,7 @@ public class Address {
     @Id
     @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     private String street;
     private String suite;

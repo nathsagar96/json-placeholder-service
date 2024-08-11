@@ -20,10 +20,11 @@ import lombok.Setter;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Geo {
+    
     @Id
     @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     private String lat;
     private String lng;

@@ -29,7 +29,7 @@ public class AlbumController {
     }
 
     @GetMapping("/{id}")
-    public Album getAlbumById(@PathVariable Integer id) {
+    public Album getAlbumById(@PathVariable int id) {
         return albumService
                 .getAlbumById(id)
                 .orElseThrow(() -> new AlbumNotFoundException("Album not found with id: " + id));
@@ -42,7 +42,7 @@ public class AlbumController {
     }
 
     @PutMapping("/{id}")
-    public Album updateAlbum(@PathVariable Integer id, @RequestBody Album albumDetails) {
+    public Album updateAlbum(@PathVariable int id, @RequestBody Album albumDetails) {
         Album album =
                 albumService
                         .getAlbumById(id)
@@ -56,11 +56,11 @@ public class AlbumController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAlbum() {
+    public void deleteAlbum(@PathVariable int id) {
     }
 
     @GetMapping("/user/{userId}")
-    public List<Album> getAlbumsByUserId(@PathVariable Integer userId) {
+    public List<Album> getAlbumsByUserId(@PathVariable int userId) {
         return albumService.getAlbumsByUserId(userId);
     }
 }

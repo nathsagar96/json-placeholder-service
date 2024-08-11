@@ -30,7 +30,7 @@ public class PhotoController {
     }
 
     @GetMapping("/{id}")
-    public Photo getPhotoById(@PathVariable Integer id) {
+    public Photo getPhotoById(@PathVariable int id) {
         return photoService
                 .getPhotoById(id)
                 .orElseThrow(() -> new PhotoNotFoundException("Photo not found with id: " + id));
@@ -43,7 +43,7 @@ public class PhotoController {
     }
 
     @PutMapping("/{id}")
-    public Photo updatePhoto(@PathVariable Integer id, @RequestBody Photo photoDetails) {
+    public Photo updatePhoto(@PathVariable int id, @RequestBody Photo photoDetails) {
         Photo photo =
                 photoService
                         .getPhotoById(id)
@@ -60,11 +60,11 @@ public class PhotoController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePhoto() {
+    public void deletePhoto(@PathVariable int id) {
     }
 
     @GetMapping("/album/{albumId}")
-    public List<Photo> getPhotosByAlbumId(@PathVariable Integer albumId) {
+    public List<Photo> getPhotosByAlbumId(@PathVariable int albumId) {
         return photoService.getPhotosByAlbumId(albumId);
     }
 }

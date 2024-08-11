@@ -22,9 +22,9 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    private Integer id;
     private String title;
     private String body;
-    private Integer userId;
+    private int userId;
 }

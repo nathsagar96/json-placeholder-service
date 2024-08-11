@@ -66,7 +66,7 @@ public class PostControllerTest {
     @Test
     public void testCreatePost_returnsCreatedPost() {
         // given
-        Post post = new Post(null, "Title 1", "Body 1", 1);
+        Post post = new Post(101, "Title 1", "Body 1", 1);
         Post createdPost = new Post(101, "Title 1", "Body 1", 1);
 
         // when

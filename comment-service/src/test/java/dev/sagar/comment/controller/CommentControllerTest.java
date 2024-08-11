@@ -66,7 +66,7 @@ class CommentControllerTest {
     @Test
     void testCreateComment_returnsCreatedComment() {
         // given
-        Comment comment = new Comment(null, "Name 1", "Email 1", "Body 1", 1);
+        Comment comment = new Comment(101, "Name 1", "Email 1", "Body 1", 1);
         Comment createdComment = new Comment(501, "Name 1", "Email 1", "Body 1", 1);
 
         // when

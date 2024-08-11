@@ -30,7 +30,7 @@ public class CommentController {
     }
 
     @GetMapping("/{id}")
-    public Comment getCommentById(@PathVariable Integer id) {
+    public Comment getCommentById(@PathVariable int id) {
         return commentService
                 .getCommentById(id)
                 .orElseThrow(() -> new CommentNotFoundException("Comment not found with id: " + id));
@@ -43,7 +43,7 @@ public class CommentController {
     }
 
     @PutMapping("/{id}")
-    public Comment updateComment(@PathVariable Integer id, @RequestBody Comment commentDetails) {
+    public Comment updateComment(@PathVariable int id, @RequestBody Comment commentDetails) {
         Comment comment =
                 commentService
                         .getCommentById(id)
@@ -60,11 +60,11 @@ public class CommentController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteComment() {
+    public void deleteComment(@PathVariable int id) {
     }
 
     @GetMapping("/post/{postId}")
-    public List<Comment> getCommentsByPostId(@PathVariable Integer postId) {
+    public List<Comment> getCommentsByPostId(@PathVariable int postId) {
         return commentService.getCommentsByPostId(postId);
     }
 }

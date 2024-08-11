@@ -67,7 +67,7 @@ class TodoControllerTest {
     @Test
     void testCreateTodo_returnsCreatedTodo() {
         // given
-        Todo todo = new Todo(null, "title 1", false, 1);
+        Todo todo = new Todo(201, "title 1", false, 1);
         Todo createdTodo = new Todo(201, "title 1", false, 1);
 
         // when

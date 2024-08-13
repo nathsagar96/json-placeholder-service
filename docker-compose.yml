@@ -2,9 +2,12 @@ services:
   loki:
     image: grafana/loki
     container_name: loki
-    command: ["-config.file=/etc/loki/local-config.yaml"]
+    command:
+      - -config.file=/etc/loki/local-config.yaml
     ports:
       - "3100:3100"
+    networks:
+      - json-placeholder-service-network
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -15,16 +18,21 @@ services:
       - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     ports:
       - "9090:9090"
+    networks:
+      - json-placeholder-service-network
   tempo:
     image: grafana/tempo
     container_name: tempo
-    command: ["-config.file=/etc/tempo.yaml"]
+    command:
+      - -config.file=/etc/tempo.yaml
     volumes:
       - ./docker/tempo/tempo.yml:/etc/tempo.yaml:ro
       - ./data/tempo:/tmp/tempo
     ports:
       - "3110:3100" # Tempo
       - "9411:9411" # zipkin
+    networks:
+      - json-placeholder-service-network
   grafana:
     image: grafana/grafana
     container_name: grafana
@@ -36,3 +44,46 @@ services:
       - GF_AUTH_DISABLE_LOGIN_FORM=true
     ports:
       - "3000:3000"
+    networks:
+      - json-placeholder-service-network
+  config-server:
+    container_name: config-server
+    build:
+      context: ./config-server/
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    networks:
+      - json-placeholder-service-network
+  service-registry:
+    container_name: service-registry
+    build:
+      context: ./service-registry/
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - json-placeholder-service-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: ./api-gateway/
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8090"
+    networks:
+      - json-placeholder-service-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - loki
+      - prometheus
+      - tempo
+      - grafana
+      - service-registry
+
+networks:
+  json-placeholder-service-network:
+    driver: bridge

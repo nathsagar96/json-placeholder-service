@@ -1,7 +1,0 @@
-services:
-  service-registry:
-    build:
-      context: ../service-registry/
-      dockerfile: Dockerfile
-    ports:
-      - "8761:8761"

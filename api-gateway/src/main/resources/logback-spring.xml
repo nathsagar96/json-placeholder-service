@@ -13,7 +13,7 @@
                 <pattern>application=${appName},host=${HOSTNAME},level=%level</pattern>
             </label>
             <message>
-                <pattern>${FILE_LOG_PATTERN}</pattern>
+                <pattern>%-5level [%.5(${HOSTNAME})] %.10thread %logger{20} | %msg %ex</pattern>
             </message>
             <sortByTime>true</sortByTime>
         </format>

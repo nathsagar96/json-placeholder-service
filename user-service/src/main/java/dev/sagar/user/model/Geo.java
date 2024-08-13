@@ -20,7 +20,7 @@ import lombok.Setter;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Geo {
-    
+
     @Id
     @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)

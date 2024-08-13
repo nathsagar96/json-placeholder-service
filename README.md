@@ -1,6 +1,8 @@
 # JSON Placeholder Service
 
-The JSON Placeholder Service is a group of Spring Boot applications designed to mimic the functionalities of the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) service. This service provides RESTful apis for handling users, posts, comments, and albums, demonstrating a microservices architecture using Spring Cloud.
+The JSON Placeholder Service is a group of Spring Boot applications designed to mimic the functionalities of
+the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) service. This service provides RESTful apis for handling
+users, posts, comments, and albums, demonstrating a microservices architecture using Spring Cloud.
 
 ## Table of Contents
 
@@ -12,7 +14,8 @@ The JSON Placeholder Service is a group of Spring Boot applications designed to 
 
 ## Architecture
 
-This project follows a microservices architecture, where each functionality is separated into individual services. The project leverages Spring Cloud for api gateway, service discovery and configuration management.
+This project follows a microservices architecture, where each functionality is separated into individual services. The
+project leverages Spring Cloud for api gateway, service discovery and configuration management.
 
 ![architecure diagram](json-placeholder-service-architecture-diagram.png)
 
@@ -28,28 +31,28 @@ This project follows a microservices architecture, where each functionality is s
 The JSON Placeholder Service is composed of the following microservices:
 
 1. **Post Service**
-   - Folder: [Post Service](post-service)
-   - Manages posts.
+    - Folder: [Post Service](post-service)
+    - Manages posts.
 
 2. **Comment Service**
-   - Folder: [Comment Service](comment-service)
-   - Manages comments.
+    - Folder: [Comment Service](comment-service)
+    - Manages comments.
 
 3. **Album Service**
-   - Folder: [Album Service](album-service)
-   - Manages albums.
+    - Folder: [Album Service](album-service)
+    - Manages albums.
 
 4. **Photo Service**
-   - Folder: [Photo Service](photo-service)
-   - Manages photos.
+    - Folder: [Photo Service](photo-service)
+    - Manages photos.
 
 5. **Todo Service**
-   - Folder: [Todo Service](todo-service)
-   - Manages todos.
+    - Folder: [Todo Service](todo-service)
+    - Manages todos.
 
 6. **User Service**
-   - Folder: [User Service](user-service)
-   - Manages users.
+    - Folder: [User Service](user-service)
+    - Manages users.
 
 ## Installation
 

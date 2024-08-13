@@ -138,7 +138,8 @@ The application will start and be accessible at http://localhost:8081.
 
 ## Exception Handling
 
-**CommentNotFoundException**: Thrown when a comment with the specified ID is not found. Returns a 404 Not Found response.
+**CommentNotFoundException**: Thrown when a comment with the specified ID is not found. Returns a 404 Not Found
+response.
 
 ## Dependencies
 

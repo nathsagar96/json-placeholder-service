@@ -29,7 +29,7 @@ cd service-registry
 ### Configuration
 
 1. **Application Properties:** The default configuration is set up in the `application.yml` file. You can modify it to
-suit your environment.
+   suit your environment.
 
 ```yaml
 server:

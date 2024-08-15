@@ -1,14 +1,11 @@
 # API Gateway
 
-The API Gateway is a key component of our microservices architecture, acting as the single entry point for all client
-interactions. It handles routing, authentication, rate limiting, and other cross-cutting concerns. This application uses
-**Spring Cloud Gateway** for routing and **Spring Cloud Eureka Server** for service discovery.
+The API Gateway is a key component of our microservices architecture, acting as the single entry point for all client interactions. It handles routing, authentication, rate limiting, and other cross-cutting concerns. This application uses **Spring Cloud Gateway** for routing and **Spring Cloud Eureka Server** for service discovery.
 
 ## Features
 
 - **Routing:** Routes client requests to appropriate microservices based on the request path.
 - **Load Balancing:** Balances requests across multiple instances of a microservice.
-- **Rate Limiting:** Limits the number of requests a client can make to prevent abuse.
 
 ## Getting Started
 
@@ -17,10 +14,11 @@ interactions. It handles routing, authentication, rate limiting, and other cross
 - **Java 21**
 - **Maven**
 - **Eureka Server:** Service Registry for service discovery.
+- **Docker**
 
 ### Go to the project directory
 
-```sh
+```bash
 cd api-gateway
 ```
 
@@ -56,11 +54,23 @@ eureka:
 
 Use Maven to build the project:
 
-```sh
+```bash
 mvn clean install
 ```
 
+### Build the Docker image
+
+If you prefer to run the service as a Docker container, build the Docker image using the provided `Dockerfile`:
+
+```bash
+docker build -t api-gateway:latest .
+```
+
 ### Run the application
+
+You can run the application either locally using Maven or as a Docker container.
+
+#### Option 1: Run with Maven
 
 Start the Spring Boot application:
 
@@ -70,10 +80,19 @@ mvn spring-boot:run
 
 The API Gateway will be accessible at `http://localhost:8090`.
 
+#### Option 2: Run with Docker
+
+Run the container using the built image:
+
+```bash
+docker run -d -p 8090:8090 api-gateway:latest
+```
+
+The API Gateway will be accessible at `http://localhost:8090`.
+
 ### Usage
 
-- **Routing Requests:** The gateway routes incoming requests to the appropriate microservice based on the request path.
-  For example, requests to `/users/**` are routed to the User Service.
+- **Routing Requests:** The gateway routes incoming requests to the appropriate microservice based on the request path. For example, requests to `/users/**` are routed to the User Service.
 
 ## Contributing
 

@@ -1,8 +1,6 @@
 # JSON Placeholder Service
 
-The JSON Placeholder Service is a group of Spring Boot applications designed to mimic the functionalities of
-the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) service. This service provides RESTful apis for handling
-users, posts, comments, and albums, demonstrating a microservices architecture using Spring Cloud.
+The JSON Placeholder Service is a group of Spring Boot applications designed to mimic the functionalities of the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) service. This service provides RESTful APIs for handling users, posts, comments, and albums, demonstrating a microservices architecture using Spring Cloud.
 
 ## Table of Contents
 
@@ -14,10 +12,9 @@ users, posts, comments, and albums, demonstrating a microservices architecture u
 
 ## Architecture
 
-This project follows a microservices architecture, where each functionality is separated into individual services. The
-project leverages Spring Cloud for api gateway, service discovery and configuration management.
+This project follows a microservices architecture, where each functionality is separated into individual services. The project leverages Spring Cloud for API gateway, service discovery, and configuration management.
 
-![architecure diagram](json-placeholder-service-architecture-diagram.png)
+![architecture diagram](json-placeholder-service-architecture-diagram.png)
 
 ### Technologies Used
 
@@ -25,34 +22,41 @@ project leverages Spring Cloud for api gateway, service discovery and configurat
 - Spring Data JPA
 - H2 Database
 - Spring Cloud
+- Docker
+- Docker Compose
 
 ## Microservices
 
 The JSON Placeholder Service is composed of the following microservices:
 
 1. **Post Service**
-    - Folder: [Post Service](post-service)
-    - Manages posts.
+
+   - Folder: [Post Service](post-service)
+   - Manages posts.
 
 2. **Comment Service**
-    - Folder: [Comment Service](comment-service)
-    - Manages comments.
+
+   - Folder: [Comment Service](comment-service)
+   - Manages comments.
 
 3. **Album Service**
-    - Folder: [Album Service](album-service)
-    - Manages albums.
+
+   - Folder: [Album Service](album-service)
+   - Manages albums.
 
 4. **Photo Service**
-    - Folder: [Photo Service](photo-service)
-    - Manages photos.
+
+   - Folder: [Photo Service](photo-service)
+   - Manages photos.
 
 5. **Todo Service**
-    - Folder: [Todo Service](todo-service)
-    - Manages todos.
+
+   - Folder: [Todo Service](todo-service)
+   - Manages todos.
 
 6. **User Service**
-    - Folder: [User Service](user-service)
-    - Manages users.
+   - Folder: [User Service](user-service)
+   - Manages users.
 
 ## Installation
 
@@ -60,18 +64,39 @@ The JSON Placeholder Service is composed of the following microservices:
 
 - JDK 21
 - Maven
-- Spring Boot
+- Docker
+- Docker Compose
 
 ### Steps
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/nathsagar96/json-placeholder-service.git
-    cd json-placeholder-service
-    ```
+   ```bash
+   git clone https://github.com/nathsagar96/json-placeholder-service.git
+   cd json-placeholder-service
+   ```
 
-2. Follow instructions given in the readme file for individual applications.
+2. Package each microservice:
+
+   Navigate to each microservice folder (e.g., `post-service`, `comment-service`, etc.) and run the following command:
+
+   ```bash
+   mvn clean package
+   ```
+
+   Repeat this step for all microservices.
+
+3. Build and start the application using Docker Compose:
+
+   In the root directory (where `docker-compose.yml` is located), run:
+
+   ```bash
+   docker-compose up --build
+   ```
+
+   This command builds the Docker images and starts the containers for all microservices.
+
+4. Access the application at `http://localhost:{port}`, where `{port}` is the port exposed by your API Gateway or individual services.
 
 ## Usage
 
@@ -133,7 +158,7 @@ The JSON Placeholder Service is composed of the following microservices:
 Contributions are welcome! Please fork the repository and submit a pull request.
 
 1. Fork the repository
-2. Create a new branch (git checkout -b feature-branch)
-3. Commit your changes (git commit -am 'Add new feature')
-4. Push to the branch (git push origin feature-branch)
+2. Create a new branch (`git checkout -b feature-branch`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature-branch`)
 5. Create a new Pull Request

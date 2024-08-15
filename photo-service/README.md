@@ -2,15 +2,14 @@
 
 ## Overview
 
-This is a Spring Boot application that provides a RESTful API for managing album photos. The API allows clients to
-create,
-retrieve, update, and delete photos. Each photo contains a title, url, thumbnail url and is associated with an album.
+This is a Spring Boot application that provides a RESTful API for managing album photos. The API allows clients to create, retrieve, update, and delete photos. Each photo contains a title, URL, thumbnail URL, and is associated with an album.
 
 ## Prerequisites
 
 - Java
 - Maven
 - Spring Boot
+- Docker
 
 ## Getting Started
 
@@ -28,7 +27,19 @@ Use Maven to build the project:
 mvn clean install
 ```
 
+### Build the Docker image
+
+If you prefer to run the service as a Docker container, build the Docker image using the provided `Dockerfile`:
+
+```bash
+docker build -t photo-service:latest .
+```
+
 ### Run the application
+
+You can run the application either locally using Maven or as a Docker container.
+
+#### Option 1: Run with Maven
 
 Start the Spring Boot application:
 
@@ -36,13 +47,23 @@ Start the Spring Boot application:
 mvn spring-boot:run
 ```
 
-The application will start and be accessible at http://localhost:8083.
+The application will start and be accessible at `http://localhost:8083`.
+
+#### Option 2: Run with Docker
+
+Run the container using the built image:
+
+```bash
+docker run -d -p 8083:8083 photo-service:latest
+```
+
+The application will start and be accessible at `http://localhost:8083`.
 
 ## API Endpoints
 
 ### Get all photos
 
-- URL: /photos
+- URL: `/photos`
 - Method: GET
 - Response: A list of all photos
 
@@ -60,9 +81,9 @@ The application will start and be accessible at http://localhost:8083.
 
 ### Get a photo by ID
 
-- URL: /photos/{id}
+- URL: `/photos/{id}`
 - Method: GET
-- Path Variable: id (Integer) - ID of the photo
+- Path Variable: `id` (Integer) - ID of the photo
 - Response: The photo with the specified ID
 
 ```json
@@ -77,7 +98,7 @@ The application will start and be accessible at http://localhost:8083.
 
 ### Create a new photo
 
-- URL: /photos
+- URL: `/photos`
 - Method: POST
 - Request Body: A JSON object representing the new photo
 - Response: The created photo
@@ -94,9 +115,9 @@ The application will start and be accessible at http://localhost:8083.
 
 ### Update a photo
 
-- URL: /photos/{id}
+- URL: `/photos/{id}`
 - Method: PUT
-- Path Variable: id (Integer) - ID of the photo to update
+- Path Variable: `id` (Integer) - ID of the photo to update
 - Request Body: A JSON object with the updated photo details
 - Response: The updated photo
 
@@ -112,16 +133,16 @@ The application will start and be accessible at http://localhost:8083.
 
 ### Delete a photo
 
-- URL: /photos/{id}
+- URL: `/photos/{id}`
 - Method: DELETE
-- Path Variable: id (Integer) - ID of the photo to delete
+- Path Variable: `id` (Integer) - ID of the photo to delete
 - Response: 204 No Content
 
-### Get photos by post ID
+### Get photos by album ID
 
-- URL: /photos/album/{albumId}
+- URL: `/photos/album/{albumId}`
 - Method: GET
-- Path Variable: albumId (Integer) - ID of the album
+- Path Variable: `albumId` (Integer) - ID of the album
 - Response: A list of photos by the specified album
 
 ```json

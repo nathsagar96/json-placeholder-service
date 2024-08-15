@@ -2,15 +2,14 @@
 
 ## Overview
 
-This is a Spring Boot application that provides a RESTful API for managing albums. The API allows clients to
-create,
-retrieve, update, and delete albums. Each album contains a title and is associated with a user.
+This is a Spring Boot application that provides a RESTful API for managing albums. The API allows clients to create, retrieve, update, and delete albums. Each album contains a title and is associated with a user.
 
 ## Prerequisites
 
 - Java
 - Maven
 - Spring Boot
+- Docker
 
 ## Getting Started
 
@@ -28,7 +27,19 @@ Use Maven to build the project:
 mvn clean install
 ```
 
+### Build the Docker image
+
+If you prefer to run the service as a Docker container, build the Docker image using the provided `Dockerfile`:
+
+```bash
+docker build -t album-service:latest .
+```
+
 ### Run the application
+
+You can run the application either locally using Maven or as a Docker container.
+
+#### Option 1: Run with Maven
 
 Start the Spring Boot application:
 
@@ -38,12 +49,22 @@ mvn spring-boot:run
 
 The application will start and be accessible at http://localhost:8082.
 
+#### Option 2: Run with Docker
+
+Run the container using the built image:
+
+```bash
+docker run -d -p 8082:8082 album-service:latest
+```
+
+The application will be accessible at http://localhost:8082.
+
 ## API Endpoints
 
 ### Get all albums
 
-- URL: /albums
-- Method: GET
+- URL: `/albums`
+- Method: `GET`
 - Response: A list of all albums
 
 ```json
@@ -58,9 +79,9 @@ The application will start and be accessible at http://localhost:8082.
 
 ### Get an album by ID
 
-- URL: /albums/{id}
-- Method: GET
-- Path Variable: id (Integer) - ID of the album
+- URL: `/albums/{id}`
+- Method: `GET`
+- Path Variable: `id` (Integer) - ID of the album
 - Response: The album with the specified ID
 
 ```json
@@ -73,8 +94,8 @@ The application will start and be accessible at http://localhost:8082.
 
 ### Create a new album
 
-- URL: /albums
-- Method: POST
+- URL: `/albums`
+- Method: `POST`
 - Request Body: A JSON object representing the new album
 - Response: The created album
 
@@ -86,11 +107,11 @@ The application will start and be accessible at http://localhost:8082.
 }
 ```
 
-### Update a album
+### Update an album
 
-- URL: /albums/{id}
-- Method: PUT
-- Path Variable: id (Integer) - ID of the album to update
+- URL: `/albums/{id}`
+- Method: `PUT`
+- Path Variable: `id` (Integer) - ID of the album to update
 - Request Body: A JSON object with the updated album details
 - Response: The updated album
 
@@ -102,18 +123,18 @@ The application will start and be accessible at http://localhost:8082.
 }
 ```
 
-### Delete a album
+### Delete an album
 
-- URL: /albums/{id}
-- Method: DELETE
-- Path Variable: id (Integer) - ID of the album to delete
-- Response: 204 No Content
+- URL: `/albums/{id}`
+- Method: `DELETE`
+- Path Variable: `id` (Integer) - ID of the album to delete
+- Response: `204 No Content`
 
 ### Get albums by user ID
 
-- URL: /albums/user/{userId}
-- Method: GET
-- Path Variable: userId (Integer) - ID of the user
+- URL: `/albums/user/{userId}`
+- Method: `GET`
+- Path Variable: `userId` (Integer) - ID of the user
 - Response: A list of albums by the specified user
 
 ```json

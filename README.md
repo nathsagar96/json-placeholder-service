@@ -8,6 +8,7 @@ The JSON Placeholder Service is a group of Spring Boot applications designed to 
 - [Microservices](#microservices)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Monitoring and Logging](#monitoring-and-logging)
 - [Contributing](#contributing)
 
 ## Architecture
@@ -24,6 +25,10 @@ This project follows a microservices architecture, where each functionality is s
 - Spring Cloud
 - Docker
 - Docker Compose
+- Grafana
+- Loki
+- Prometheus
+- Tempo
 
 ## Microservices
 
@@ -152,6 +157,28 @@ The JSON Placeholder Service is composed of the following microservices:
 - `POST /users`: Create a new user
 - `PUT /users/{id}`: Update a user by ID
 - `DELETE /users/{id}`: Delete a user by ID
+
+## Monitoring and Logging
+
+This project integrates with several tools for monitoring and logging:
+
+### Grafana
+
+Grafana provides a powerful and flexible interface for visualizing metrics. To access Grafana, navigate to `http://localhost:3000`.
+
+Grafana is configured to connect with Prometheus to fetch metrics data and visualize it.
+
+### Prometheus
+
+Prometheus is used for collecting and querying metrics. It scrapes metrics from your microservices and stores them for querying.
+
+### Loki
+
+Loki is used for log aggregation. Loki integrates with Grafana, allowing you to correlate logs and metrics.
+
+### Tempo
+
+Tempo is used for distributed tracing. Tempo helps in tracing the flow of requests through your microservices.
 
 ## Contributing
 

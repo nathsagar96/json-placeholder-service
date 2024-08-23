@@ -4,6 +4,8 @@ import dev.sagar.todo.exception.TodoNotFoundException;
 import dev.sagar.todo.model.Todo;
 import dev.sagar.todo.service.TodoService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,15 +24,18 @@ import java.util.List;
 @RequestMapping(path = "/todos")
 public class TodoController {
 
+    private static final Logger logger = LoggerFactory.getLogger(TodoController.class);
     private final TodoService todoService;
 
     @GetMapping
     public List<Todo> getTodos() {
+        logger.info("Getting all todos");
         return todoService.getTodos();
     }
 
     @GetMapping("/{id}")
     public Todo getTodoById(@PathVariable int id) {
+        logger.info("Getting todo with id: {}", id);
         return todoService
                 .getTodoById(id)
                 .orElseThrow(() -> new TodoNotFoundException("Todo not found with id: " + id));
@@ -38,12 +43,14 @@ public class TodoController {
 
     @PostMapping
     public Todo createTodo(@RequestBody Todo todo) {
+        logger.info("Creating todo: {}", todo);
         todo.setId(201);
         return todo;
     }
 
     @PutMapping("/{id}")
     public Todo updateTodo(@PathVariable int id, @RequestBody Todo todoDetails) {
+        logger.info("Updating todo with id: {}", id);
         Todo todo =
                 todoService
                         .getTodoById(id)
@@ -59,10 +66,12 @@ public class TodoController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTodo(@PathVariable int id) {
+        logger.info("Deleting todo with id: {}", id);
     }
 
     @GetMapping("/user/{userId}")
     public List<Todo> getTodosByUserId(@PathVariable int userId) {
+        logger.info("Getting todos by user id: {}", userId);
         return todoService.getTodosByUserId(userId);
     }
 }

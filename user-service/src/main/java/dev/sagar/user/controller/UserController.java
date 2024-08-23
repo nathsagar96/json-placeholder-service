@@ -4,6 +4,8 @@ import dev.sagar.user.exception.UserNotFoundException;
 import dev.sagar.user.model.User;
 import dev.sagar.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,15 +24,18 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     private final UserService userService;
 
     @GetMapping
     public List<User> getUsers() {
+        logger.info("Getting all users");
         return userService.getUsers();
     }
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable int id) {
+        logger.info("Getting user by id: {}", id);
         return userService
                 .getUserById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
@@ -38,12 +43,14 @@ public class UserController {
 
     @PostMapping
     public User createUser(@RequestBody User user) {
+        logger.info("Creating user: {}", user);
         user.setId(11);
         return user;
     }
 
     @PutMapping("/{id}")
     public User updateUser(@PathVariable int id, @RequestBody User userDetails) {
+        logger.info("Updating user with id: {}", id);
         User user =
                 userService
                         .getUserById(id)
@@ -63,6 +70,7 @@ public class UserController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable int id) {
+        logger.info("Deleting user with id: {}", id);
     }
 }
 

@@ -1,43 +1,42 @@
 services:
   loki:
-    image: grafana/loki
+    image: grafana/loki:main
     container_name: loki
-    command:
-      - -config.file=/etc/loki/local-config.yaml
+    command: -config.file=/etc/loki/local-config.yaml
     ports:
       - "3100:3100"
     networks:
       - json-placeholder-service-network
-  prometheus:
-    image: prom/prometheus
-    container_name: prometheus
-    command:
-      - --enable-feature=exemplar-storage
-      - --config.file=/etc/prometheus/prometheus.yml
     volumes:
-      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - loki-data:/data
+
+  prometheus:
+    image: prom/prometheus:v2.46.0
+    container_name: prometheus
+    command: --enable-feature=exemplar-storage --config.file=/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
     networks:
       - json-placeholder-service-network
-  tempo:
-    image: grafana/tempo
-    container_name: tempo
-    command:
-      - -config.file=/etc/tempo.yaml
     volumes:
-      - ./docker/tempo/tempo.yml:/etc/tempo.yaml:ro
-      - ./data/tempo:/tmp/tempo
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+  tempo:
+    image: grafana/tempo:2.2.2
+    container_name: tempo
+    command: -config.file=/etc/tempo.yaml
     ports:
       - "3110:3100" # Tempo
       - "9411:9411" # zipkin
     networks:
       - json-placeholder-service-network
-  grafana:
-    image: grafana/grafana
-    container_name: grafana
     volumes:
-      - ./docker/grafana:/etc/grafana/provisioning/datasources:ro
+      - ./docker/tempo/tempo.yml:/etc/tempo.yaml:ro
+      - tempo-data:/tmp/tempo
+
+  grafana:
+    image: grafana/grafana:10.1.0
+    container_name: grafana
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
@@ -46,6 +45,9 @@ services:
       - "3000:3000"
     networks:
       - json-placeholder-service-network
+    volumes:
+      - ./docker/grafana:/etc/grafana/provisioning/datasources:ro
+
   config-server:
     container_name: config-server
     build:
@@ -55,6 +57,12 @@ services:
       - "8888:8888"
     networks:
       - json-placeholder-service-network
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:8888/post-service/default" ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
   service-registry:
     container_name: service-registry
     build:
@@ -66,114 +74,12 @@ services:
       - json-placeholder-service-network
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-  post-service:
-    container_name: post-service
-    build:
-      context: ./post-service
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    networks:
-      - json-placeholder-service-network
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    depends_on:
-      - loki
-      - prometheus
-      - tempo
-      - grafana
-      - config-server
-      - service-registry
-  comment-service:
-    container_name: comment-service
-    build:
-      context: ./comment-service
-      dockerfile: Dockerfile
-    ports:
-      - "8081:8081"
-    networks:
-      - json-placeholder-service-network
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    depends_on:
-      - loki
-      - prometheus
-      - tempo
-      - grafana
-      - config-server
-      - service-registry
-  album-service:
-    container_name: album-service
-    build:
-      context: ./album-service
-      dockerfile: Dockerfile
-    ports:
-      - "8082:8082"
-    networks:
-      - json-placeholder-service-network
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    depends_on:
-      - loki
-      - prometheus
-      - tempo
-      - grafana
-      - config-server
-      - service-registry
-  photo-service:
-    container_name: photo-service
-    build:
-      context: ./photo-service
-      dockerfile: Dockerfile
-    ports:
-      - "8083:8083"
-    networks:
-      - json-placeholder-service-network
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    depends_on:
-      - loki
-      - prometheus
-      - tempo
-      - grafana
-      - config-server
-      - service-registry
-  todo-service:
-    container_name: todo-service
-    build:
-      context: ./todo-service
-      dockerfile: Dockerfile
-    ports:
-      - "8084:8084"
-    networks:
-      - json-placeholder-service-network
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    depends_on:
-      - loki
-      - prometheus
-      - tempo
-      - grafana
-      - config-server
-      - service-registry
-  user-service:
-    container_name: user-service
-    build:
-      context: ./user-service
-      dockerfile: Dockerfile
-    ports:
-      - "8085:8085"
-    networks:
-      - json-placeholder-service-network
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    depends_on:
-      - loki
-      - prometheus
-      - tempo
-      - grafana
-      - config-server
-      - service-registry
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:8761/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
   api-gateway:
     container_name: api-gateway
     build:
@@ -186,18 +92,171 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      - loki
-      - prometheus
-      - tempo
-      - grafana
-      - service-registry
-      - post-service
-      - comment-service
-      - album-service
-      - photo-service
-      - todo-service
-      - user-service
+      service-registry:
+        condition: service_healthy
+      loki:
+        condition: service_started
+      prometheus:
+        condition: service_started
+      tempo:
+        condition: service_started
+      grafana:
+        condition: service_started
+
+  post-service:
+    container_name: post-service
+    build:
+      context: ./post-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - json-placeholder-service-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      config-server:
+        condition: service_healthy
+      service-registry:
+        condition: service_healthy
+      loki:
+        condition: service_started
+      prometheus:
+        condition: service_started
+      tempo:
+        condition: service_started
+      grafana:
+        condition: service_started
+
+  comment-service:
+    container_name: comment-service
+    build:
+      context: ./comment-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    networks:
+      - json-placeholder-service-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      config-server:
+        condition: service_healthy
+      service-registry:
+        condition: service_healthy
+      loki:
+        condition: service_started
+      prometheus:
+        condition: service_started
+      tempo:
+        condition: service_started
+      grafana:
+        condition: service_started
+
+  album-service:
+    container_name: album-service
+    build:
+      context: ./album-service
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    networks:
+      - json-placeholder-service-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      config-server:
+        condition: service_healthy
+      service-registry:
+        condition: service_healthy
+      loki:
+        condition: service_started
+      prometheus:
+        condition: service_started
+      tempo:
+        condition: service_started
+      grafana:
+        condition: service_started
+
+  photo-service:
+    container_name: photo-service
+    build:
+      context: ./photo-service
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    networks:
+      - json-placeholder-service-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      config-server:
+        condition: service_healthy
+      service-registry:
+        condition: service_healthy
+      loki:
+        condition: service_started
+      prometheus:
+        condition: service_started
+      tempo:
+        condition: service_started
+      grafana:
+        condition: service_started
+
+  todo-service:
+    container_name: todo-service
+    build:
+      context: ./todo-service
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    networks:
+      - json-placeholder-service-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      config-server:
+        condition: service_healthy
+      service-registry:
+        condition: service_healthy
+      loki:
+        condition: service_started
+      prometheus:
+        condition: service_started
+      tempo:
+        condition: service_started
+      grafana:
+        condition: service_started
+
+  user-service:
+    container_name: user-service
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    ports:
+      - "8085:8085"
+    networks:
+      - json-placeholder-service-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      config-server:
+        condition: service_healthy
+      service-registry:
+        condition: service_healthy
+      loki:
+        condition: service_started
+      prometheus:
+        condition: service_started
+      tempo:
+        condition: service_started
+      grafana:
+        condition: service_started
 
 networks:
   json-placeholder-service-network:
     driver: bridge
+
+volumes:
+  loki-data:
+  tempo-data:

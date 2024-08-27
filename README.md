@@ -1,6 +1,8 @@
 # JSON Placeholder Service
 
-The JSON Placeholder Service is a group of Spring Boot applications designed to mimic the functionalities of the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) service. This service provides RESTful APIs for handling users, posts, comments, and albums, demonstrating a microservices architecture using Spring Cloud.
+The JSON Placeholder Service is a group of Spring Boot applications designed to mimic the functionalities of
+the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) service. This service provides RESTful APIs for handling
+users, posts, comments, and albums, demonstrating a microservices architecture using Spring Cloud.
 
 ## Table of Contents
 
@@ -13,7 +15,8 @@ The JSON Placeholder Service is a group of Spring Boot applications designed to 
 
 ## Architecture
 
-This project follows a microservices architecture, where each functionality is separated into individual services. The project leverages Spring Cloud for API gateway, service discovery, and configuration management.
+This project follows a microservices architecture, where each functionality is separated into individual services. The
+project leverages Spring Cloud for API gateway, service discovery, and configuration management.
 
 ![architecture diagram](json-placeholder-service-architecture-diagram.png)
 
@@ -36,32 +39,32 @@ The JSON Placeholder Service is composed of the following microservices:
 
 1. **Post Service**
 
-   - Folder: [Post Service](post-service)
-   - Manages posts.
+    - Folder: [Post Service](post-service)
+    - Manages posts.
 
 2. **Comment Service**
 
-   - Folder: [Comment Service](comment-service)
-   - Manages comments.
+    - Folder: [Comment Service](comment-service)
+    - Manages comments.
 
 3. **Album Service**
 
-   - Folder: [Album Service](album-service)
-   - Manages albums.
+    - Folder: [Album Service](album-service)
+    - Manages albums.
 
 4. **Photo Service**
 
-   - Folder: [Photo Service](photo-service)
-   - Manages photos.
+    - Folder: [Photo Service](photo-service)
+    - Manages photos.
 
 5. **Todo Service**
 
-   - Folder: [Todo Service](todo-service)
-   - Manages todos.
+    - Folder: [Todo Service](todo-service)
+    - Manages todos.
 
 6. **User Service**
-   - Folder: [User Service](user-service)
-   - Manages users.
+    - Folder: [User Service](user-service)
+    - Manages users.
 
 ## Installation
 
@@ -81,17 +84,7 @@ The JSON Placeholder Service is composed of the following microservices:
    cd json-placeholder-service
    ```
 
-2. Package each microservice:
-
-   Navigate to each microservice folder (e.g., `post-service`, `comment-service`, etc.) and run the following command:
-
-   ```bash
-   mvn clean package
-   ```
-
-   Repeat this step for all microservices.
-
-3. Build and start the application using Docker Compose:
+2. Build and start the application using Docker Compose:
 
    In the root directory (where `docker-compose.yml` is located), run:
 
@@ -101,7 +94,8 @@ The JSON Placeholder Service is composed of the following microservices:
 
    This command builds the Docker images and starts the containers for all microservices.
 
-4. Access the application at `http://localhost:{port}`, where `{port}` is the port exposed by your API Gateway or individual services.
+3. Access the application at `http://localhost:{port}`, where `{port}` is the port exposed by your API Gateway or
+   individual services.
 
 ## Usage
 
@@ -164,13 +158,15 @@ This project integrates with several tools for monitoring and logging:
 
 ### Grafana
 
-Grafana provides a powerful and flexible interface for visualizing metrics. To access Grafana, navigate to `http://localhost:3000`.
+Grafana provides a powerful and flexible interface for visualizing metrics. To access Grafana, navigate to
+`http://localhost:3000`.
 
 Grafana is configured to connect with Prometheus to fetch metrics data and visualize it.
 
 ### Prometheus
 
-Prometheus is used for collecting and querying metrics. It scrapes metrics from your microservices and stores them for querying.
+Prometheus is used for collecting and querying metrics. It scrapes metrics from your microservices and stores them for
+querying.
 
 ### Loki
 

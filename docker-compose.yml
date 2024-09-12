@@ -48,10 +48,10 @@ services:
     volumes:
       - ./docker/grafana:/etc/grafana/provisioning/datasources:ro
 
-  config-server:
-    container_name: config-server
+  config-service:
+    container_name: config-service
     build:
-      context: ./config-server/
+      context: ./config-service/
       dockerfile: Dockerfile
     ports:
       - "8888:8888"
@@ -63,10 +63,10 @@ services:
       timeout: 5s
       retries: 5
 
-  service-registry:
-    container_name: service-registry
+  discovery-service:
+    container_name: discovery-service
     build:
-      context: ./service-registry/
+      context: ./discovery-service/
       dockerfile: Dockerfile
     ports:
       - "8761:8761"
@@ -80,10 +80,10 @@ services:
       timeout: 10s
       retries: 5
 
-  api-gateway:
-    container_name: api-gateway
+  gateway-service:
+    container_name: gateway-service
     build:
-      context: ./api-gateway/
+      context: ./gateway-service/
       dockerfile: Dockerfile
     ports:
       - "8090:8090"
@@ -92,7 +92,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      service-registry:
+      discovery-service:
         condition: service_healthy
       loki:
         condition: service_started
@@ -115,9 +115,9 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      config-server:
+      config-service:
         condition: service_healthy
-      service-registry:
+      discovery-service:
         condition: service_healthy
       loki:
         condition: service_started
@@ -140,9 +140,9 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      config-server:
+      config-service:
         condition: service_healthy
-      service-registry:
+      discovery-service:
         condition: service_healthy
       loki:
         condition: service_started
@@ -165,9 +165,9 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      config-server:
+      config-service:
         condition: service_healthy
-      service-registry:
+      discovery-service:
         condition: service_healthy
       loki:
         condition: service_started
@@ -190,9 +190,9 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      config-server:
+      config-service:
         condition: service_healthy
-      service-registry:
+      discovery-service:
         condition: service_healthy
       loki:
         condition: service_started
@@ -215,9 +215,9 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      config-server:
+      config-service:
         condition: service_healthy
-      service-registry:
+      discovery-service:
         condition: service_healthy
       loki:
         condition: service_started
@@ -240,9 +240,9 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      config-server:
+      config-service:
         condition: service_healthy
-      service-registry:
+      discovery-service:
         condition: service_healthy
       loki:
         condition: service_started

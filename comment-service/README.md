@@ -2,7 +2,8 @@
 
 ## Overview
 
-This is a Spring Boot application that provides a RESTful API for managing blog comments. The API allows clients to create, retrieve, update, and delete comments. Each comment contains a name, email, body, and is associated with a post.
+This is a Spring Boot application that provides a RESTful API for managing blog comments. The API allows clients to
+create, retrieve, update, and delete comments. Each comment contains a name, email, body, and is associated with a post.
 
 ## Prerequisites
 
@@ -36,6 +37,17 @@ docker build -t comment-service:latest .
 ```
 
 ### Run the application
+
+Ensure the following services are running before starting the application:
+
+- Config Service
+- Discovery Service
+- Loki
+- Prometheus
+- Grafana
+- Tempo
+
+If these services are not running, start them using the docker-compose.yml file in the root directory.
 
 You can run the application either locally using Maven or as a Docker container.
 
@@ -159,7 +171,8 @@ The application will start and be accessible at `http://localhost:8081`.
 
 ## Exception Handling
 
-**CommentNotFoundException**: Thrown when a comment with the specified ID is not found. Returns a 404 Not Found response.
+**CommentNotFoundException**: Thrown when a comment with the specified ID is not found. Returns a 404 Not Found
+response.
 
 ## Dependencies
 

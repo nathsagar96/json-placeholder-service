@@ -1,13 +1,17 @@
 # Discovery Service (Eureka Server)
 
-The Service Registry is a crucial component in our microservices' architecture. It serves as a discovery server where microservices register themselves at runtime. This allows other microservices and the API Gateway to discover and communicate with each other dynamically, providing a highly scalable and resilient system.
+The Discovery Service is a crucial component in our microservices' architecture. It serves as a discovery server where
+microservices register themselves at runtime. This allows other microservices and the API Gateway to discover and
+communicate with each other dynamically, providing a highly scalable and resilient system.
 
 ## Features
 
-- **Dynamic Service Registration and Discovery:** Microservices register with the Eureka Server at startup and deregister on shutdown.
+- **Dynamic Service Registration and Discovery:** Microservices register with the Eureka Server at startup and
+  deregister on shutdown.
 - **Client-Side Load Balancing:** Enables load balancing across instances of a service.
 - **Health Checks:** Monitors the health status of registered microservices.
-- **Instance Metadata:** Stores metadata about service instances, such as instance ID, IP address, port, and other custom attributes.
+- **Instance Metadata:** Stores metadata about service instances, such as instance ID, IP address, port, and other
+  custom attributes.
 
 ## Getting Started
 
@@ -25,7 +29,8 @@ cd discovery-service
 
 ### Configuration
 
-1. **Application Properties:** The default configuration is set up in the `application.yml` file. You can modify it to suit your environment.
+1. **Application Properties:** The default configuration is set up in the `application.yml` file. You can modify it to
+   suit your environment.
 
 ```yaml
 server:
@@ -52,7 +57,7 @@ mvn clean install
 If you prefer to run the service as a Docker container, build the Docker image using the provided `Dockerfile`:
 
 ```sh
-docker build -t service-registry:latest .
+docker build -t discovery-service:latest .
 ```
 
 ### Run the application
@@ -74,7 +79,7 @@ The Eureka Dashboard will be available at `http://localhost:8761`.
 Run the container using the built image:
 
 ```bash
-docker run -d -p 8761:8761 service-registry:latest
+docker run -d -p 8761:8761 discovery-service:latest
 ```
 
 The Eureka Dashboard will be available at `http://localhost:8761`.
@@ -86,6 +91,7 @@ Microservices can register with the Eureka Server by including the following dep
 **Dependencies:**
 
 ```xml
+
 <dependency>
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -103,7 +109,8 @@ eureka:
 
 ## Monitoring and Health Checks
 
-The Eureka Dashboard provides a web interface to view registered services, their statuses, and instance information. The dashboard also allows monitoring the health of each registered service.
+The Eureka Dashboard provides a web interface to view registered services, their statuses, and instance information. The
+dashboard also allows monitoring the health of each registered service.
 
 ## Contributing
 

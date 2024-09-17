@@ -2,7 +2,8 @@
 
 ## Overview
 
-This is a Spring Boot application that provides a RESTful API for managing todos. The API allows clients to create, retrieve, update, and delete todos. Each todo contains a title, status, and is associated with a user.
+This is a Spring Boot application that provides a RESTful API for managing todos. The API allows clients to create,
+retrieve, update, and delete todos. Each todo contains a title, status, and is associated with a user.
 
 ## Prerequisites
 
@@ -36,6 +37,17 @@ docker build -t todo-service:latest .
 ```
 
 ### Run the application
+
+Ensure the following services are running before starting the application:
+
+- Config Service
+- Discovery Service
+- Loki
+- Prometheus
+- Grafana
+- Tempo
+
+If these services are not running, start them using the docker-compose.yml file in the root directory.
 
 You can run the application either locally using Maven or as a Docker container.
 

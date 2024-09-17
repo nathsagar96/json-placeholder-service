@@ -73,7 +73,7 @@ services:
     networks:
       - json-placeholder-service-network
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=dev
     healthcheck:
       test: [ "CMD", "wget", "--spider", "-q", "http://localhost:8761/actuator/health" ]
       interval: 30s
@@ -90,7 +90,7 @@ services:
     networks:
       - json-placeholder-service-network
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=dev
     depends_on:
       discovery-service:
         condition: service_healthy
@@ -113,7 +113,7 @@ services:
     networks:
       - json-placeholder-service-network
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=dev
     depends_on:
       config-service:
         condition: service_healthy
@@ -138,7 +138,7 @@ services:
     networks:
       - json-placeholder-service-network
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=dev
     depends_on:
       config-service:
         condition: service_healthy
@@ -163,7 +163,7 @@ services:
     networks:
       - json-placeholder-service-network
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=dev
     depends_on:
       config-service:
         condition: service_healthy
@@ -188,7 +188,7 @@ services:
     networks:
       - json-placeholder-service-network
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=dev
     depends_on:
       config-service:
         condition: service_healthy
@@ -213,7 +213,7 @@ services:
     networks:
       - json-placeholder-service-network
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=dev
     depends_on:
       config-service:
         condition: service_healthy
@@ -238,7 +238,7 @@ services:
     networks:
       - json-placeholder-service-network
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=dev
     depends_on:
       config-service:
         condition: service_healthy

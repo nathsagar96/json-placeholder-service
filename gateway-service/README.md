@@ -1,6 +1,9 @@
 # Gateway Service
 
-The API Gateway is a key component of our microservices architecture, acting as the single entry point for all client interactions. It handles routing, authentication, rate limiting, and other cross-cutting concerns. This application uses **Spring Cloud Gateway** for routing and **Spring Cloud Eureka Server** for service discovery.
+The Gateway Service is a key component of our microservices architecture, acting as the single entry point for all
+client
+interactions. It handles routing, authentication, rate limiting, and other cross-cutting concerns. This application uses
+**Spring Cloud Gateway** for routing and **Spring Cloud Eureka Server** for service discovery.
 
 ## Features
 
@@ -63,7 +66,7 @@ mvn clean install
 If you prefer to run the service as a Docker container, build the Docker image using the provided `Dockerfile`:
 
 ```bash
-docker build -t api-gateway:latest .
+docker build -t gateway-service:latest .
 ```
 
 ### Run the application
@@ -85,14 +88,15 @@ The API Gateway will be accessible at `http://localhost:8090`.
 Run the container using the built image:
 
 ```bash
-docker run -d -p 8090:8090 api-gateway:latest
+docker run -d -p 8090:8090 gateway-service:latest
 ```
 
 The API Gateway will be accessible at `http://localhost:8090`.
 
 ### Usage
 
-- **Routing Requests:** The gateway routes incoming requests to the appropriate microservice based on the request path. For example, requests to `/users/**` are routed to the User Service.
+- **Routing Requests:** The gateway routes incoming requests to the appropriate microservice based on the request path.
+  For example, requests to `/users/**` are routed to the User Service.
 
 ## Contributing
 

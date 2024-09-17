@@ -2,7 +2,9 @@
 
 ## Overview
 
-This is a Spring Boot application that provides a RESTful API for managing album photos. The API allows clients to create, retrieve, update, and delete photos. Each photo contains a title, URL, thumbnail URL, and is associated with an album.
+This is a Spring Boot application that provides a RESTful API for managing album photos. The API allows clients to
+create, retrieve, update, and delete photos. Each photo contains a title, URL, thumbnail URL, and is associated with an
+album.
 
 ## Prerequisites
 
@@ -36,6 +38,17 @@ docker build -t photo-service:latest .
 ```
 
 ### Run the application
+
+Ensure the following services are running before starting the application:
+
+- Config Service
+- Discovery Service
+- Loki
+- Prometheus
+- Grafana
+- Tempo
+
+If these services are not running, start them using the docker-compose.yml file in the root directory.
 
 You can run the application either locally using Maven or as a Docker container.
 

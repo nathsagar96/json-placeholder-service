@@ -71,6 +71,16 @@ docker build -t gateway-service:latest .
 
 ### Run the application
 
+Ensure the following services are running before starting the application:
+
+- Discovery Service
+- Loki
+- Prometheus
+- Grafana
+- Tempo
+
+If these services are not running, start them using the docker-compose.yml file in the root directory.
+
 You can run the application either locally using Maven or as a Docker container.
 
 #### Option 1: Run with Maven
